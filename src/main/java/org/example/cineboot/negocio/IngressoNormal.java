@@ -1,8 +1,10 @@
 package org.example.cineboot.negocio;
 
+import org.example.cineboot.Filme;
+
 public class IngressoNormal extends Ingresso{
-    public IngressoNormal(double preco) {
-        super(preco);
+    public IngressoNormal(double preco, Filme filme, Sessao sessao) {
+        super(preco, filme, sessao);
     }
 
     @Override

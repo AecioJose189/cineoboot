@@ -3,21 +3,24 @@ package org.example.cineboot;
 import javafx.scene.image.ImageView;
 import org.example.cineboot.negocio.Sessao;
 
+import java.util.ArrayList;
+
 public class Filme {
     private String titulo;
     private String descricao;
     private String duracao;
     private String classificacao;
     private String imagem;
-    private Sessao sessao;
+    private ArrayList<Sessao> sessoes;
 
 
-    public Filme(String titulo, String descricao, String imagem, String duracao, String classificacao) {
+    public Filme(String titulo, String descricao, String imagem, String duracao, String classificacao, ArrayList<Sessao> sessoes) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.imagem = imagem;
         this.duracao = duracao;
         this.classificacao = classificacao;
+        this.sessoes = sessoes;
     }
 
     public ArrayList<Sessao> getSessoes() {

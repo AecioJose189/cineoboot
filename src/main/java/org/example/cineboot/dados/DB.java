@@ -7,14 +7,15 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class DB {
     private static DB instance;
     private final File file = new File("src/main/resources/org/example/cineboot/data/db.json");
+    private Filme filme;
+    private Filme filme1;
 
     private DB() {
 
@@ -62,7 +63,7 @@ public class DB {
     }
 
     public Filme getFilme(int id) {
-        Filme filme = null;
+        Filme filme1 = null;
         try {
             String content = new String(Files.readAllBytes(Paths.get(file.toURI())));
             JSONArray json = new JSONArray(content);
@@ -70,13 +71,30 @@ public class DB {
                 JSONObject jsonObject = json.getJSONObject(j);
                 if (jsonObject.getInt("id") == id) {
                     System.out.println(jsonObject);
-                    return new Filme(jsonObject.getString("nome"),
+                    JSONArray sessoes = jsonObject.getJSONArray("sessoes");
+                    ArrayList<Sessao> sessoesArrayList = new ArrayList<Sessao>();
+
+                    for (int k = 0; k < sessoes.length(); k++) {
+                        JSONObject sessao = sessoes.getJSONObject(k);
+                        sessoesArrayList.add(
+                                new Sessao(
+                                        sessao.getLong("id"),
+                                        sessao.getString("data"),
+                                        sessao.getString("horario"),
+                                        sessao.getInt("ingressosTotais"),
+                                        sessao.getInt("ingressosComprados")
+                                )
+                        );
+                    }
+
+                    return new Filme(
+                            jsonObject.getString("nome"),
                             jsonObject.getString("sinopse"),
                             jsonObject.getString("imagem"),
                             jsonObject.getString("duracao"),
-                            jsonObject.getString("classificacao")
-                            );
-
+                            jsonObject.getString("classificacao"),
+                            sessoesArrayList
+                    );
                 }
             }
 
@@ -84,7 +102,7 @@ public class DB {
             e.printStackTrace();
         }
 
-        return filme;
+        return filme1;
     }
 
     public Sessao getSessao(int id) {

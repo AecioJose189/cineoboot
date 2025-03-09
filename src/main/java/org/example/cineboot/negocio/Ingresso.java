@@ -7,8 +7,10 @@ public abstract class Ingresso {
     protected Sessao sessao;
     protected double preco;
 
-    public Ingresso(double preco) {
+    public Ingresso(double preco, Filme filme, Sessao sessao) {
         this.preco = preco;
+        this.filme = filme;
+        this.sessao = sessao;
     }
 
     public abstract void exibirDetalhes();
@@ -35,4 +37,5 @@ public abstract class Ingresso {
     public void setPreco(double preco) {
         this.preco = preco;
     }
+
 }

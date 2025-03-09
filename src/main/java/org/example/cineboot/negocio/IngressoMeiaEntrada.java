@@ -1,8 +1,10 @@
 package org.example.cineboot.negocio;
 
+import org.example.cineboot.Filme;
+
 public class IngressoMeiaEntrada extends Ingresso implements Desconto {
-    public IngressoMeiaEntrada(double preco) {
-        super(preco);
+    public IngressoMeiaEntrada(double preco, Filme filme, Sessao sessao) {
+        super(preco, filme, sessao);
     }
 
     @Override
