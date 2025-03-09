@@ -1,0 +1,41 @@
+[{
+  "id": 1,
+  "nome": "Avatar",
+  "sinopse": "filme avatar sinopse",
+  "imagem": "resources/org/example/cineboot/image/avatar.jpg",
+  "sessoes": [
+    {
+      "id": 1,
+      "data": "08/03/2025",
+      "horario":"19:00",
+      "ingressosTotais": 50,
+      "ingressosComprados": 0
+    },{
+      "id": 2,
+      "data": "08/03/2025",
+      "horario": "21:00",
+      "ingressosTotais": 50,
+      "ingressosComprados": 50
+    }
+  ]
+},{
+  "id": 2,
+  "nome": "Spider Man",
+  "sinopse": "filme spider",
+  "imagem": "resources/org/example/cineboot/image/homemaranha.jpg",
+  "sessoes": [
+    {
+      "id": 1,
+      "data": "08/03/2025",
+      "horario":"19:00",
+      "ingressosTotais": 50,
+      "ingressosComprados": 0
+    },{
+      "id": 2,
+      "data": "08/03/2025",
+      "horario": "21:00",
+      "ingressosTotais": 50,
+      "ingressosComprados": 0
+    }
+  ]
+}]

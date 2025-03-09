@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="700.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cineboot.gui.Tela02">
+  <children>
+    <AnchorPane fx:id="root" maxHeight="-1.0" maxWidth="-1.0" prefHeight="473.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label fx:id="selecioneDataLabel" layoutX="39.0" layoutY="250.0" text="Selecione a data desejada:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="selecioneDataCbox" layoutX="55.0" layoutY="280.0" prefWidth="150.0" promptText="Data" />
+            <ComboBox fx:id="selecioneHorarioCbox" layoutX="55.0" layoutY="360.0" prefWidth="150.0" promptText="Horário" />
+            <Label fx:id="selecioneHorarioLabel" layoutX="47.0" layoutY="330.0" text="Selecione o horário desejado:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="selecioneTipoLabel" layoutX="55.0" layoutY="472.0" prefHeight="30.0" prefWidth="267.0" text="Selecione o tipo de ingresso:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="quantidadeDisponivelLabel" layoutX="47.0" layoutY="404.0" text="Quantidade de cadeiras disponíveis 40/50" textFill="RED">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="meiaLabel" layoutX="90.0" layoutY="509.0" text="Meia:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="inteiraLabel" layoutX="90.0" layoutY="548.0" text="Inteira:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Spinner fx:id="inteiraSpinner" editable="true" layoutX="240.0" layoutY="548.0" prefHeight="25.0" prefWidth="62.0" />
+            <Button fx:id="confirmarEscolhaPg2" layoutX="460.0" layoutY="635.0" mnemonicParsing="false" text="Confirmar escolha" />
+            <Button fx:id="voltarpg2" layoutX="396.0" layoutY="635.0" mnemonicParsing="false" text="Voltar " />
+            <Label fx:id="nomeDoFilmepg2" layoutX="42.0" layoutY="45.0" text="Nome do filme">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imagemPag2" fitHeight="292.0" fitWidth="203.0" layoutX="426.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="sinopseNomeLabel" layoutX="42.0" layoutY="94.0" text="Sinopse">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="sinopseLabel" alignment="TOP_LEFT" layoutX="39.0" layoutY="126.0" prefHeight="128.0" prefWidth="369.0" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." textOverrun="CLIP" wrapText="true" />
+            <Label layoutX="90.0" layoutY="586.0" text="Ingresso VIP">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Spinner editable="true" layoutX="242.0" layoutY="587.0" prefHeight="25.0" prefWidth="62.0" />
+            <Label fx:id="duracaoLabel" layoutX="131.0" layoutY="98.0" text="Label" />
+            <Label fx:id="classificacaoLabel" layoutX="242.0" layoutY="98.0" text="Label" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
