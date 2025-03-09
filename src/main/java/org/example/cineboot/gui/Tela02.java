@@ -55,14 +55,12 @@ public class Tela02 {
     private Button confirmarEscolhaPg2;
 
     private DB db;
-
+    private Tela03 tela03;
     private Filme filme;
     private Sessao sessao;
-
     private Spinner<Integer> meiaSpinner;
     private Spinner<Integer> inteiraSpinner;
     private Spinner<Integer> vipSpinner;
-
     private Set<String> horarios;
 
     @FXML
@@ -100,6 +98,11 @@ public class Tela02 {
         confirmarEscolhaPg2.setOnAction(
                 event -> {
                     Venda venda = new Venda();
+
+                    int quantidadeMeia = meiaSpinner.getValue();
+                    int quantidadeInteira = inteiraSpinner.getValue();
+                    int quantidadeVip = vipSpinner.getValue();
+
                     for (int i = 0; i < meiaSpinner.getValue(); i++) {
                         venda.adicionarIngresso(new IngressoMeiaEntrada(20, filme, sessao));
                     }
@@ -110,8 +113,13 @@ public class Tela02 {
                         venda.adicionarIngresso(new IngressoVip(20, filme, sessao));
                     }
                     try {
+
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela03.fxml"));
                         Parent root = loader.load();
+
+                        Tela03 tela03Controller = loader.getController();
+
+                        tela03Controller.setDetalhes(filme, sessao, quantidadeMeia, quantidadeInteira, quantidadeVip);
 
                         Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stageAtual.close();
@@ -215,4 +223,5 @@ public class Tela02 {
     public void inicializarTelaComFilme(int id) {
         exibirDetalhes(id);
     }
+
 }
