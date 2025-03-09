@@ -20,6 +20,13 @@ public class Filme {
         this.classificacao = classificacao;
     }
 
+    public ArrayList<Sessao> getSessoes() {
+        return sessoes;
+    }
+
+    public void setSessoes(ArrayList<Sessao> sessoes) {
+        this.sessoes = sessoes;
+    }
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;

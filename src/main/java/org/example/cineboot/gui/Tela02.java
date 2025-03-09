@@ -1,4 +1,5 @@
 package org.example.cineboot.gui;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -57,12 +58,26 @@ public class Tela02 {
         sinopseLabel.setText(filme.getDescricao());
 
 
+        duracaoLabel.setText("Duração: " + filme.getDuracao());
+        classificacaoLabel.setText("Classificação: " + filme.getClassificacao());
 
-        duracaoLabel.setText("Duração: "+filme.getDuracao());
-        classificacaoLabel.setText("Classificação: "+filme.getClassificacao());
+        for (int i = 0; i < filme.getSessoes().size(); i++) {
+            Sessao sessaoAtual = filme.getSessoes().get(i);
+            if (sessaoAtual.getIngressosTotais() - sessaoAtual.getIngressosComprados() == 0) {
+                continue;
+            }
 
-        System.out.println("OIIIIIIIIIII");
-        meiaSpinner.increment(5);
+            datas.add(filme.getSessoes().get(i).getData());
+        }
+
+        selecioneDataCbox.getItems().addAll(datas);
+        selecioneDataCbox.valueProperty().addListener((observable, oldValue, newValue) -> {
+            onEscolherData(newValue);
+        });
+        selecioneHorarioCbox.valueProperty().addListener((observable, oldValue, newValue) -> {
+            onEscolherHorario(newValue);
+        });
+
         // imagemPag2.setImage(new Image(filme.getImagem()));
     }
     public void voltarTela() {

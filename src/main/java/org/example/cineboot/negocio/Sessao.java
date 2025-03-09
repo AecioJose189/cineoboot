@@ -56,4 +56,15 @@ public class Sessao {
     public void setIngressosComprados(Integer ingressosComprados) {
         this.ingressosComprados = ingressosComprados;
     }
+
+    @Override
+    public String toString() {
+        return "Sessao{" +
+                "id=" + id +
+                ", data='" + data + '\'' +
+                ", horario='" + horario + '\'' +
+                ", ingressosTotais=" + ingressosTotais +
+                ", ingressosComprados=" + ingressosComprados +
+                '}';
+    }
 }

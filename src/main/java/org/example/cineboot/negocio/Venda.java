@@ -12,7 +12,15 @@ public class Venda {
 
     public void mostrarIngressos() {
         for (Ingresso ingresso : ingressos) {
-            ingresso.exibirDetalhes(); // Polimorfismo em ação!
+            ingresso.exibirDetalhes();
         }
+    }
+
+    public List<Ingresso> getIngressos() {
+        return ingressos;
+    }
+
+    public void setIngressos(List<Ingresso> ingressos) {
+        this.ingressos = ingressos;
     }
 }

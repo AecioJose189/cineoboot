@@ -20,19 +20,45 @@ public class DB {
 
     }
 
-    public void processarVenda(){
+    public void processarVenda(Venda venda) {
+        int ingressosComprados = venda.getIngressos().size();
+        Sessao sessao = venda.getIngressos().getFirst().getSessao();
+        Filme filme = venda.getIngressos().getFirst().getFilme();
+
         try {
-            String content = new String(Files.readAllBytes(Paths.get(file.toURI())));
+            // 1. Ler o arquivo
+            String content = new String(Files.readAllBytes(Paths.get(file.getPath())));
             JSONArray json = new JSONArray(content);
+
+            // 2. Modificar os dados
+            boolean encontrou = false;
             for (int j = 0; j < json.length(); j++) {
-                System.out.println(json.getJSONObject(j));
+                JSONObject filmeAtual = json.getJSONObject(j);
+                if (filmeAtual.getString("nome").equals(filme.getTitulo())) {
+                    JSONArray sessoes = filmeAtual.getJSONArray("sessoes");
+                    for (int i = 0; i < sessoes.length(); i++) {
+                        JSONObject sessaoAtual = sessoes.getJSONObject(i);
+                        if (sessaoAtual.getInt("id") == sessao.getId()) {
+                            int ingressosAtuais = sessaoAtual.getInt("ingressosComprados");
+                            sessaoAtual.put("ingressosComprados", ingressosAtuais + ingressosComprados);
+                            encontrou = true;
+                            break;
+                        }
+                    }
+                    if (encontrou) break;
+                }
+            }
+
+            if (encontrou) {
+                Files.write(
+                        Paths.get(file.getPath()),
+                        json.toString(4).getBytes()
+                );
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     public Filme getFilme(int id) {

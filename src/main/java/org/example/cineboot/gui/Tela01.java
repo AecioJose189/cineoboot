@@ -29,7 +29,6 @@ public class Tela01 {
     private ImageView filmeteste;
 
 
-
     @FXML
     public void initialize() {
         rodar();
@@ -37,92 +36,91 @@ public class Tela01 {
 
 
     // Evento de clique na imagem
-        public void rodar() {
+    public void rodar() {
+        filmeAvatarPoster.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela02.fxml"));
+                Parent root = loader.load();
 
-            filmeAvatarPoster.setOnMouseClicked(event -> {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela02.fxml"));
-                    Parent root = loader.load();
+                Tela02 controller = loader.getController();
+                controller.inicializarTelaComFilme(1);
 
-                    Tela02 controller = loader.getController();
-                    controller.inicializarTelaComFilme(1);
+                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                primaryStage.close();
 
-                    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    primaryStage.close();
+                Stage stage = new Stage();
+                stage.setTitle("Detalhes do Filme");
+                stage.setScene(new Scene(root, 650, 700));
+                stage.show();
 
-                    Stage stage = new Stage();
-                    stage.setTitle("Detalhes do Filme");
-                    stage.setScene(new Scene(root, 650, 700));
-                    stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        });
+        filmeHomemAranha.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela02.fxml"));
+                Parent root = loader.load();
 
-            });
-            filmeHomemAranha.setOnMouseClicked(event -> {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela02.fxml"));
-                    Parent root = loader.load();
+                Tela02 controller = loader.getController();
+                controller.inicializarTelaComFilme(2);
 
-                    Tela02 controller = loader.getController();
-                    controller.inicializarTelaComFilme(2);
+                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                primaryStage.close();
 
-                    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    primaryStage.close();
+                Stage stage = new Stage();
+                stage.setTitle("Detalhes do Filme");
+                stage.setScene(new Scene(root, 650, 700));
+                stage.show();
 
-                    Stage stage = new Stage();
-                    stage.setTitle("Detalhes do Filme");
-                    stage.setScene(new Scene(root, 650, 700));
-                    stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        });
+        filmeOppenheimerPoster.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela02.fxml"));
+                Parent root = loader.load();
 
-            });
-            filmeOppenheimerPoster.setOnMouseClicked(event -> {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela02.fxml"));
-                    Parent root = loader.load();
+                Tela02 controller = loader.getController();
+                controller.inicializarTelaComFilme(3);
 
-                    Tela02 controller = loader.getController();
-                    controller.inicializarTelaComFilme(3);
+                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                primaryStage.close();
 
-                    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    primaryStage.close();
+                Stage stage = new Stage();
+                stage.setTitle("Detalhes do Filme");
+                stage.setScene(new Scene(root, 650, 700));
+                stage.show();
 
-                    Stage stage = new Stage();
-                    stage.setTitle("Detalhes do Filme");
-                    stage.setScene(new Scene(root, 650, 700));
-                    stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        });
+        filmeAindaEstouAqui.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela02.fxml"));
+                Parent root = loader.load();
 
-            });
-            filmeAindaEstouAqui.setOnMouseClicked(event -> {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela02.fxml"));
-                    Parent root = loader.load();
+                Tela02 controller = loader.getController();
+                controller.inicializarTelaComFilme(4);
 
-                    Tela02 controller = loader.getController();
-                    controller.inicializarTelaComFilme(4);
+                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                primaryStage.close();
 
-                    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    primaryStage.close();
+                Stage stage = new Stage();
+                stage.setTitle("Detalhes do Filme");
+                stage.setScene(new Scene(root, 650, 700));
+                stage.show();
 
-                    Stage stage = new Stage();
-                    stage.setTitle("Detalhes do Filme");
-                    stage.setScene(new Scene(root, 650, 700));
-                    stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            });
+        });
 //            filmeAvatarPoster.setOnMousePressed(event ->{
 //                // Carrega a segunda tela
 //                FXMLLoader loader = new FXMLLoader(getClass().getResource("segunda-tela.fxml"));
@@ -146,7 +144,7 @@ public class Tela01 {
 //                stage.show();
 //            }
 
-        }
+    }
 
 
     public Tela01() throws IOException {
