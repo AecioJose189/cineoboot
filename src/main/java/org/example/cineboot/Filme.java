@@ -1,6 +1,7 @@
 package org.example.cineboot;
 
 import javafx.scene.image.ImageView;
+import org.example.cineboot.negocio.Sessao;
 
 public class Filme {
     private String titulo;
@@ -8,6 +9,7 @@ public class Filme {
     private String duracao;
     private String classificacao;
     private String imagem;
+    private Sessao sessao;
 
 
     public Filme(String titulo, String descricao, String imagem, String duracao, String classificacao) {

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.example.cineboot.Filme;
@@ -24,7 +25,10 @@ public class Tela01 {
     @FXML
     private ImageView filmeAindaEstouAqui;
 
+    @FXML
     private ImageView filmeteste;
+
+
 
     @FXML
     public void initialize() {

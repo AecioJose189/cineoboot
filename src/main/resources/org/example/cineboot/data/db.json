@@ -1,8 +1,10 @@
 [{
   "id": 1,
   "nome": "Avatar",
-  "sinopse": "filme avatar sinopse",
+  "sinopse": "No exuberante mundo alienígena de Pandora vivem os Na'vi, seres que parecem ser primitivos, mas são altamente evoluídos. Jake Sully, um ex-fuzileiro naval paralítico, volta a andar através de um avatar e se apaixona por uma Na'vi. Esta paixão leva Jake a lutar pela sobrevivência de Pandora.",
   "imagem": "resources/org/example/cineboot/image/avatar.jpg",
+  "duracao": "162min",
+  "classificacao": "12 anos",
   "sessoes": [
     {
       "id": 1,
@@ -20,9 +22,11 @@
   ]
 },{
   "id": 2,
-  "nome": "Spider Man",
-  "sinopse": "filme spider",
-  "imagem": "resources/org/example/cineboot/image/homemaranha.jpg",
+  "nome": "Homem aranha: de volta ao lar",
+  "sinopse": "Depois de lutar ao lado dos Vingadores, chegou a hora do jovem Peter Parker voltar para casa em Nova York ao lado de sua tia May. Sob o olhar atento do mentor Tony Stark, Peter começa a abraçar sua nova identidade como Homem-Aranha e combate diariamente pequenos crimes nas redondezas. Ele acredita que encontrou a missão de sua vida quando o terrível vilão Abutre surge ameaçando a cidade.",
+  "imagem": "teste.jpg",
+  "duracao": "133min",
+  "classificacao": "12 anos",
   "sessoes": [
     {
       "id": 1,
@@ -38,4 +42,49 @@
       "ingressosComprados": 0
     }
   ]
-}]
+},{
+    "id": 3,
+    "nome": "Oppenheimer",
+    "sinopse": "O físico J. Robert Oppenheimer trabalha com uma equipe de cientistas durante o Projeto Manhattan, levando ao desenvolvimento da bomba atômica.É baseado no livro American Prometheus, biografia de J. Robert Oppenheimer escrita por Kai Bird e Martin J. Sherwin.",
+    "imagem": "teste.jpg",
+    "duracao": "180min",
+    "classificacao": "18 anos",
+    "sessoes": [
+      {
+        "id": 1,
+        "data": "08/03/2025",
+        "horario":"19:00",
+        "ingressosTotais": 50,
+        "ingressosComprados": 0
+      },{
+        "id": 2,
+        "data": "08/03/2025",
+        "horario": "21:00",
+        "ingressosTotais": 50,
+        "ingressosComprados": 0
+      }
+    ]
+},{
+  "id": 4,
+  "nome": "Ainda estou aqui",
+  "sinopse": "No início da década de 1970, o Brasil enfrenta o endurecimento da ditadura militar. No Rio de Janeiro, a família Paiva - Rubens, Eunice e seus cinco filhos - vive à beira da praia em uma casa de portas abertas para os amigos. Um dia, Rubens Paiva é levado por militares à paisana e desaparece. Eunice - cuja busca pela verdade sobre o destino de seu marido se estenderia por décadas - é obrigada a se reinventar e traçar um novo futuro para si e seus filhos.",
+  "imagem": "teste.jpg",
+  "duracao": "136min",
+  "classificacao": "14 anos",
+  "sessoes": [
+    {
+      "id": 1,
+      "data": "08/03/2025",
+      "horario":"19:00",
+      "ingressosTotais": 50,
+      "ingressosComprados": 0
+    },{
+      "id": 2,
+      "data": "08/03/2025",
+      "horario": "21:00",
+      "ingressosTotais": 50,
+      "ingressosComprados": 0
+    }
+  ]
+}
+]

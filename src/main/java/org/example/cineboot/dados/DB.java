@@ -1,6 +1,7 @@
 package org.example.cineboot.dados;
 
 import org.example.cineboot.Filme;
+import org.example.cineboot.negocio.Sessao;
 import org.example.cineboot.negocio.Venda;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -59,6 +60,33 @@ public class DB {
 
         return filme;
     }
+
+    public Sessao getSessao(int id) {
+        Sessao sessao = null;
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(file.toURI())));
+            JSONArray json = new JSONArray(content);
+
+            for (int j = 0; j < json.length(); j++) {
+                JSONObject jsonObject = json.getJSONObject(j);
+                if (jsonObject.getInt("id") == id) {
+                    System.out.println(jsonObject);
+                    return new Sessao(
+                            jsonObject.getLong("id"),
+                            jsonObject.getString("data"),
+                            jsonObject.getString("horario"),
+                            jsonObject.getInt("ingressosTotais"),
+                            jsonObject.getInt("ingressosComprados")
+                    );
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return sessao;
+    }
+
 
     public static DB getInstance() {
         if (instance == null) {
