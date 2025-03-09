@@ -6,18 +6,37 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.example.cineboot.Filme;
 import org.example.cineboot.dados.DB;
 import org.example.cineboot.negocio.IngressoMeiaEntrada;
 import org.example.cineboot.negocio.IngressoVip;
+import org.example.cineboot.negocio.Sessao;
 import org.example.cineboot.negocio.Venda;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 public class Tela03 {
     @FXML
     private Button concluir;
+
+    private Filme filme;
+
+    @FXML
+    private Label nomeDoFilmePg3;
+
+    @FXML
+    private Label dataLabelPg3;
+
+    @FXML
+    private Label horarioLabelPg3;
+
+    @FXML
+    private Label ingressosQuantidadePg3;
 
     @FXML
     private void initialize() {
@@ -44,6 +63,16 @@ public class Tela03 {
                         e.printStackTrace();
                     }
                 });
+
+    }
+    public void exibirDetalhes(int id) {
+
+
+        DB db = DB.getInstance();
+        filme = db.getFilme(id);
+
+        //horario do filme falta ainda
+        //quantidade de ingresso falta ainda
 
     }
 

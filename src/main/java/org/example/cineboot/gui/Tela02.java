@@ -117,7 +117,7 @@ public class Tela02 {
                         stageAtual.close();
 
                         Stage stage = new Stage();
-                        stage.setTitle("Tela Inicial");
+                        stage.setTitle("Resumo do pedido");
                         stage.setScene(new Scene(root, 650, 700));
                         stage.show();
 

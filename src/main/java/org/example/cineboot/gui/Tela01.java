@@ -121,28 +121,6 @@ public class Tela01 {
             }
 
         });
-//            filmeAvatarPoster.setOnMousePressed(event ->{
-//                // Carrega a segunda tela
-//                FXMLLoader loader = new FXMLLoader(getClass().getResource("segunda-tela.fxml"));
-//
-//
-//
-//                // Obtém o controlador da segunda tela
-
-//
-//                // Passa o filme para o controlador da segunda tela
-//
-//
-//                // Fecha a primeira tela
-//                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//                primaryStage.close();
-//
-//                // Exibe a segunda tela
-//                Stage stage = new Stage();
-//                stage.setTitle("Detalhes do Filme");
-//                stage.setScene(new Scene(root, 800, 600));
-//                stage.show();
-//            }
 
     }
 
