@@ -45,23 +45,23 @@
                   <Font size="29.0" />
                </font>
             </Label>
-            <Label fx:id="dataLabelPg3" layoutX="283.0" layoutY="200.0" text="Data">
+            <Label fx:id="dataLabelPg3" alignment="CENTER" contentDisplay="CENTER" layoutX="207.0" layoutY="200.0" text="Data da sessão: 12/10/2025" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="horarioLabelPg3" layoutX="273.0" layoutY="230.0" text="Horário">
+            <Label fx:id="horarioLabelPg3" alignment="CENTER" contentDisplay="CENTER" layoutX="214.0" layoutY="232.0" text="Horário da sessão: 18:00" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
             <Button fx:id="concluir" layoutX="274.0" layoutY="314.0" mnemonicParsing="false" text="Concluir" />
-            <Label fx:id="ingressosQuantidadePg3" layoutX="214.0" layoutY="262.0" text="Quantidade de ingressos:">
+            <Label fx:id="ingressosQuantidadePg3" alignment="CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="263.0" text="Quantidade de ingressos: 2" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="nomeDoFilmePg3" layoutX="233.0" layoutY="160.0" text="Nome do filme">
+            <Label fx:id="nomeDoFilmePg3" alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="162.0" prefHeight="30.0" prefWidth="261.0" text="Nome do filme" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font size="20.0" />
                </font>
