@@ -1,5 +1,6 @@
 package org.example.cineboot.gui;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -87,12 +88,23 @@ public class Tela02 {
         for (int i = 0; i < filme.getSessoes().size(); i++) {
             Sessao sessaoAtual = filme.getSessoes().get(i);
             String dataEscolhida = selecioneDataCbox.getValue();
+
             if (dataEscolhida.equals(sessaoAtual.getData()) && horarioEscolhido.equals(sessaoAtual.getHorario())) {
-                quantidadeDisponivelLabel.setText("Quantidade de cadeiras disponíveis " + (sessaoAtual.getIngressosTotais() - sessaoAtual.getIngressosComprados()) + "/" + sessaoAtual.getIngressosTotais());
-                sessao = sessaoAtual;
+                int ingressosDisponiveis = sessaoAtual.getIngressosTotais() - sessaoAtual.getIngressosComprados();
+
+                if (ingressosDisponiveis > 0) {
+                    quantidadeDisponivelLabel.setText(
+                            "Quantidade de cadeiras disponíveis: " + ingressosDisponiveis + "/" + sessaoAtual.getIngressosTotais()
+                    );
+                    sessao = sessaoAtual;
+                } else {
+                    selecioneHorarioCbox.getSelectionModel().clearSelection();
+                    Platform.runLater(() -> quantidadeDisponivelLabel.setText("Sessão esgotada!"));
+                }
             }
         }
     }
+
 
     private void setupButton(){
         confirmarEscolhaPg2.setOnAction(
