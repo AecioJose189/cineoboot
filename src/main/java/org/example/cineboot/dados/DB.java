@@ -60,29 +60,10 @@ public class DB {
             }
 
         } catch (Exception e) {
-            popup();
+            System.out.println("Erro ao processar venda: " + e.getMessage());
         }
     }
 
-    private Stage popup() {
-        Stage stage = new Stage();
-        stage.setWidth(200);
-        stage.setHeight(200);
-        stage.setX(Math.random() * 500);
-        stage.setY(Math.random() * 1000);
-
-        Pane pane = new Pane();
-        Label label = new Label("Erro: Algo deu errado!");
-        label.setLayoutX(50);
-        label.setLayoutY(80);
-
-        pane.getChildren().add(label);
-
-        Scene scene = new Scene(pane);
-        stage.setScene(scene);
-
-        return stage;
-    }
 
 
     public Filme getFilme(int id) {
