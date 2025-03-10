@@ -102,7 +102,7 @@ public class Tela03 {
             dataLabelPg3.setText("Data da sessão: "+sessao.getData());
         }
 
-        String imagePath = filme.getImagem().replace("resources", "");
+        String imagePath = filme.getImagem();
         URL imageUrl = getClass().getResource(imagePath);
 
         if (imageUrl != null) {
