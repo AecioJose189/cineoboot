@@ -5,10 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.example.cineboot.Filme;
 
 import java.io.IOException;
 
@@ -25,15 +23,15 @@ public class Tela01 {
     @FXML
     private ImageView filmeAindaEstouAqui;
 
-    @FXML
-    private ImageView filmeteste;
-
 
     @FXML
     public void initialize() {
         rodar();
     }
 
+    public Tela01(){
+
+    }
 
     // Evento de clique na imagem
     public void rodar() {
@@ -54,7 +52,7 @@ public class Tela01 {
                 stage.show();
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Erro ao carregar a tela de detalhes do filme Avatar: " + e.getMessage());
             }
 
         });
@@ -75,7 +73,7 @@ public class Tela01 {
                 stage.show();
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Erro ao carregar a tela de detalhes do filme Homem aranha: " + e.getMessage());
             }
 
         });
@@ -96,7 +94,7 @@ public class Tela01 {
                 stage.show();
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Erro ao carregar a tela de detalhes do filme Oppenheimer: " + e.getMessage());
             }
 
         });
@@ -117,15 +115,10 @@ public class Tela01 {
                 stage.show();
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Erro ao carregar a tela de detalhes do filme Ainda Estou Aqui: " + e.getMessage());
             }
 
         });
-
-    }
-
-
-    public Tela01() throws IOException {
 
     }
 }

@@ -1,6 +1,11 @@
 package org.example.cineboot.dados;
 
-import org.example.cineboot.Filme;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import org.example.cineboot.gui.Tela02;
+import org.example.cineboot.negocio.Filme;
 import org.example.cineboot.negocio.Sessao;
 import org.example.cineboot.negocio.Venda;
 import org.json.JSONArray;
@@ -14,11 +19,8 @@ import java.util.ArrayList;
 public class DB {
     private static DB instance;
     private final File file = new File("src/main/resources/org/example/cineboot/data/db.json");
-    private Filme filme;
-    private Filme filme1;
 
     private DB() {
-
     }
 
     public void processarVenda(Venda venda) throws Exception {
@@ -27,11 +29,9 @@ public class DB {
         Filme filme = venda.getIngressos().getFirst().getFilme();
 
         try {
-            // 1. Ler o arquivo
             String content = new String(Files.readAllBytes(Paths.get(file.getPath())));
             JSONArray json = new JSONArray(content);
 
-            // 2. Modificar os dados
             boolean encontrou = false;
             for (int j = 0; j < json.length(); j++) {
                 JSONObject filmeAtual = json.getJSONObject(j);
@@ -44,7 +44,7 @@ public class DB {
                             if (ingressosAtuais + ingressosComprados > sessaoAtual.getInt("ingressosTotais")) {
                                 throw new Exception("Número de ingressos está acima do limite.");
                             }
-                            sessaoAtual.put("ingressosComprados", ingressosAtuais+ingressosComprados);
+                            sessaoAtual.put("ingressosComprados", ingressosAtuais + ingressosComprados);
                             encontrou = true;
                             break;
                         }
@@ -61,8 +61,28 @@ public class DB {
             }
 
         } catch (Exception e) {
-            System.out.println("teste");
+            popup();
         }
+    }
+
+    private Stage popup() {
+        Stage stage = new Stage();
+        stage.setWidth(200);
+        stage.setHeight(200);
+        stage.setX(Math.random() * 500);
+        stage.setY(Math.random() * 1000);
+
+        Pane pane = new Pane();
+        Label label = new Label("Erro: Algo deu errado!");
+        label.setLayoutX(50);
+        label.setLayoutY(80);
+
+        pane.getChildren().add(label);
+
+        Scene scene = new Scene(pane);
+        stage.setScene(scene);
+
+        return stage;
     }
 
 
@@ -103,36 +123,10 @@ public class DB {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Erro ao obter filme: " + e.getMessage());
         }
 
         return filme1;
-    }
-
-    public Sessao getSessao(int id) {
-        Sessao sessao = null;
-        try {
-            String content = new String(Files.readAllBytes(Paths.get(file.toURI())));
-            JSONArray json = new JSONArray(content);
-
-            for (int j = 0; j < json.length(); j++) {
-                JSONObject jsonObject = json.getJSONObject(j);
-                if (jsonObject.getInt("id") == id) {
-                    System.out.println(jsonObject);
-                    return new Sessao(
-                            jsonObject.getLong("id"),
-                            jsonObject.getString("data"),
-                            jsonObject.getString("horario"),
-                            jsonObject.getInt("ingressosTotais"),
-                            jsonObject.getInt("ingressosComprados")
-                    );
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return sessao;
     }
 
 

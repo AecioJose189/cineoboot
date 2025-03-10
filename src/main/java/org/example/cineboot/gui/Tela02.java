@@ -15,14 +15,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.example.cineboot.Filme;
+import org.example.cineboot.negocio.Filme;
 import org.example.cineboot.dados.DB;
 import org.example.cineboot.negocio.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 public class Tela02 {
@@ -60,7 +59,6 @@ public class Tela02 {
     private Button confirmarEscolhaPg2;
 
     private DB db;
-    private Tela03 tela03;
     private Filme filme;
     private Sessao sessao;
     private Spinner<Integer> meiaSpinner;
@@ -85,7 +83,7 @@ public class Tela02 {
         horarios.clear();
         for (int i = 0; i < filme.getSessoes().size(); i++) {
             Sessao sessaoAtual = filme.getSessoes().get(i);
-            if (data.equals(sessaoAtual.getData()) && sessaoAtual.getIngressosTotais()-sessaoAtual.getIngressosComprados() >0) {
+            if (data.equals(sessaoAtual.getData()) && sessaoAtual.getIngressosTotais() - sessaoAtual.getIngressosComprados() > 0) {
                 horarios.add(sessaoAtual.getHorario());
             }
         }
@@ -115,7 +113,7 @@ public class Tela02 {
     }
 
 
-    private void setupButton(){
+    private void setupButton() {
         confirmarEscolhaPg2.setOnAction(
                 event -> {
                     Venda venda = new Venda();
@@ -134,7 +132,6 @@ public class Tela02 {
                         venda.adicionarIngresso(new IngressoVip(20, filme, sessao));
                     }
                     try {
-
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela03.fxml"));
                         Parent root = loader.load();
 
@@ -151,15 +148,15 @@ public class Tela02 {
                         stage.show();
 
                     } catch (IOException e) {
-                        confirmarEscolhaPg2.setOnAction(value -> {popup().show();});
-                        e.printStackTrace();
+                        System.out.println("Erro ao carregar tela 03: " + e.getMessage());
+                        confirmarEscolhaPg2.setOnAction(value -> popup().show());
                     }
 
                     try {
                         db.processarVenda(venda);
                     } catch (Exception e) {
-                        Stage meuPopup = popup();
-                        meuPopup.show();
+                        System.out.println("Erro ao processar venda no banco de dados: " + e.getMessage());
+                        popup();
                     }
                 }
 
@@ -167,17 +164,28 @@ public class Tela02 {
     }
 
 
-    private Stage popup(){
+    private Stage popup() {
+        // Criando o Stage
         Stage stage = new Stage();
         stage.setWidth(200);
         stage.setHeight(200);
-        stage.setX(Math.random()*500);
-        stage.setY(Math.random()*1000);
+        stage.setX(Math.random() * 500);
+        stage.setY(Math.random() * 1000);
+
         Pane pane = new Pane();
+        Label label = new Label("Erro: Algo deu errado!");
+        label.setLayoutX(50);
+        label.setLayoutY(80);
+
+        pane.getChildren().add(label);
+
         Scene scene = new Scene(pane);
         stage.setScene(scene);
+
         return stage;
     }
+
+
     private void setupSpinners() {
         meiaSpinner = new Spinner<>(0, 10, 0);
         meiaSpinner.setLayoutX(240);
@@ -217,7 +225,7 @@ public class Tela02 {
         duracaoLabel.setText("Duração: " + filme.getDuracao());
         classificacaoLabel.setText("Classificação: " + filme.getClassificacao());
 
-        String imagePath = "";
+        String imagePath;
 
         switch (id) {
             case 1:
@@ -256,12 +264,8 @@ public class Tela02 {
         }
 
         selecioneDataCbox.getItems().addAll(datas);
-        selecioneDataCbox.valueProperty().addListener((observable, oldValue, newValue) -> {
-            onEscolherData(newValue);
-        });
-        selecioneHorarioCbox.valueProperty().addListener((observable, oldValue, newValue) -> {
-            onEscolherHorario(newValue);
-        });
+        selecioneDataCbox.valueProperty().addListener((observable, oldValue, newValue) -> onEscolherData(newValue));
+        selecioneHorarioCbox.valueProperty().addListener((observable, oldValue, newValue) -> onEscolherHorario(newValue));
 
     }
 
@@ -280,7 +284,7 @@ public class Tela02 {
                 stage.show();
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Erro ao carregar tela 01: " + e.getMessage());
             }
 
         });

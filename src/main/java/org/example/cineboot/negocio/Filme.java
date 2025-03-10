@@ -1,7 +1,4 @@
-package org.example.cineboot;
-
-import javafx.scene.image.ImageView;
-import org.example.cineboot.negocio.Sessao;
+package org.example.cineboot.negocio;
 
 import java.util.ArrayList;
 

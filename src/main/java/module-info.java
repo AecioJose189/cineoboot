@@ -8,4 +8,6 @@ module org.example.cineboot {
     exports org.example.cineboot;
     exports org.example.cineboot.gui;
     opens org.example.cineboot.gui to javafx.fxml;
+    exports org.example.cineboot.negocio;
+    opens org.example.cineboot.negocio to javafx.fxml;
 }

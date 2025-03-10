@@ -7,14 +7,13 @@ public class Sessao {
     private Integer ingressosTotais;
     private Integer ingressosComprados;
 
-    public Sessao(Long id, String data, String horario, Integer ingressosTotais, Integer ingressosComprados){
+    public Sessao(Long id, String data, String horario, Integer ingressosTotais, Integer ingressosComprados) {
         this.id = id;
         this.data = data;
         this.horario = horario;
         this.ingressosTotais = ingressosTotais;
         this.ingressosComprados = ingressosComprados;
     }
-
 
 
     public Long getId() {

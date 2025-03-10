@@ -1,7 +1,5 @@
 package org.example.cineboot.negocio;
 
-import org.example.cineboot.Filme;
-
 public abstract class Ingresso {
     protected Filme filme;
     protected Sessao sessao;
@@ -34,6 +32,7 @@ public abstract class Ingresso {
     public double getPreco() {
         return preco;
     }
+
     public void setPreco(double preco) {
         this.preco = preco;
     }
