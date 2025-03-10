@@ -21,7 +21,7 @@ public class DB {
 
     }
 
-    public void processarVenda(Venda venda) {
+    public void processarVenda(Venda venda) throws Exception {
         int ingressosComprados = venda.getIngressos().size();
         Sessao sessao = venda.getIngressos().getFirst().getSessao();
         Filme filme = venda.getIngressos().getFirst().getFilme();
@@ -41,7 +41,10 @@ public class DB {
                         JSONObject sessaoAtual = sessoes.getJSONObject(i);
                         if (sessaoAtual.getInt("id") == sessao.getId()) {
                             int ingressosAtuais = sessaoAtual.getInt("ingressosComprados");
-                            sessaoAtual.put("ingressosComprados", ingressosAtuais + ingressosComprados);
+                            if (ingressosAtuais + ingressosComprados > sessaoAtual.getInt("ingressosTotais")) {
+                                throw new Exception("Número de ingressos está acima do limite.");
+                            }
+                            sessaoAtual.put("ingressosComprados", ingressosAtuais+ingressosComprados);
                             encontrou = true;
                             break;
                         }
@@ -58,9 +61,10 @@ public class DB {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("teste");
         }
     }
+
 
     public Filme getFilme(int id) {
         Filme filme1 = null;

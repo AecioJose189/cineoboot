@@ -60,9 +60,7 @@ public class Tela03 {
         this.quantidadeMeia = quantidadeMeia;
         this.quantidadeInteira = quantidadeInteira;
         this.quantidadeVip = quantidadeVip;
-
         this.quantidadeTotal = quantidadeMeia + quantidadeInteira + quantidadeVip;
-
         exibirDetalhes();
     }
 

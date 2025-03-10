@@ -12,35 +12,37 @@
                 "horario": "19:00",
                 "ingressosTotais": 50,
                 "id": 1,
-                "ingressosComprados": 46
+                "ingressosComprados": 0
             },
             {
                 "data": "10/03/2025",
                 "horario": "20:00",
                 "ingressosTotais": 50,
                 "id": 2,
-                "ingressosComprados": 7
+                "ingressosComprados": 0
             },
             {
                 "data": "11/03/2025",
                 "horario": "14:00",
                 "ingressosTotais": 50,
                 "id": 3,
-                "ingressosComprados": 60
+                "ingressosComprados": 0
             },
             {
                 "data": "12/03/2025",
                 "horario": "13:00",
                 "ingressosTotais": 50,
                 "id": 4,
-                "ingressosComprados": 20
+                "ingressos": 10,
+                "ingressosComprados": 39
             },
             {
                 "data": "12/03/2025",
                 "horario": "14:00",
                 "ingressosTotais": 50,
                 "id": 5,
-                "ingressosComprados": 12
+                "ingressos": 0,
+                "ingressosComprados": 0
             }
         ]
     },
@@ -57,28 +59,28 @@
                 "horario": "12:00",
                 "ingressosTotais": 50,
                 "id": 6,
-                "ingressosComprados": 40
+                "ingressosComprados": 0
             },
             {
                 "data": "10/03/2025",
                 "horario": "13:00",
                 "ingressosTotais": 50,
                 "id": 7,
-                "ingressosComprados": 50
+                "ingressosComprados": 0
             },
             {
                 "data": "11/03/2025",
                 "horario": "22:00",
                 "ingressosTotais": 50,
                 "id": 8,
-                "ingressosComprados": 40
+                "ingressosComprados": 0
             },
             {
                 "data": "12/03/2025",
                 "horario": "14:00",
                 "ingressosTotais": 50,
                 "id": 9,
-                "ingressosComprados": 10
+                "ingressosComprados": 0
             }
         ]
     },
@@ -102,28 +104,28 @@
                 "horario": "23:00",
                 "ingressosTotais": 50,
                 "id": 11,
-                "ingressosComprados": 5
+                "ingressosComprados": 0
             },
             {
                 "data": "11/03/2025",
                 "horario": "21:00",
                 "ingressosTotais": 50,
                 "id": 12,
-                "ingressosComprados": 10
+                "ingressosComprados": 0
             },
             {
                 "data": "12/03/2025",
                 "horario": "20:00",
                 "ingressosTotais": 50,
                 "id": 13,
-                "ingressosComprados": 10
+                "ingressosComprados": 0
             },
             {
                 "data": "14/03/2025",
                 "horario": "22:00",
                 "ingressosTotais": 50,
                 "id": 14,
-                "ingressosComprados": 10
+                "ingressosComprados": 0
             }
         ]
     },

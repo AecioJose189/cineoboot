@@ -13,6 +13,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.example.cineboot.Filme;
 import org.example.cineboot.dados.DB;
@@ -84,7 +85,7 @@ public class Tela02 {
         horarios.clear();
         for (int i = 0; i < filme.getSessoes().size(); i++) {
             Sessao sessaoAtual = filme.getSessoes().get(i);
-            if (data.equals(sessaoAtual.getData())) {
+            if (data.equals(sessaoAtual.getData()) && sessaoAtual.getIngressosTotais()-sessaoAtual.getIngressosComprados() >0) {
                 horarios.add(sessaoAtual.getHorario());
             }
         }
@@ -150,15 +151,33 @@ public class Tela02 {
                         stage.show();
 
                     } catch (IOException e) {
+                        confirmarEscolhaPg2.setOnAction(value -> {popup().show();});
                         e.printStackTrace();
                     }
 
-                    db.processarVenda(venda);
+                    try {
+                        db.processarVenda(venda);
+                    } catch (Exception e) {
+                        Stage meuPopup = popup();
+                        meuPopup.show();
+                    }
                 }
 
         );
     }
 
+
+    private Stage popup(){
+        Stage stage = new Stage();
+        stage.setWidth(200);
+        stage.setHeight(200);
+        stage.setX(Math.random()*500);
+        stage.setY(Math.random()*1000);
+        Pane pane = new Pane();
+        Scene scene = new Scene(pane);
+        stage.setScene(scene);
+        return stage;
+    }
     private void setupSpinners() {
         meiaSpinner = new Spinner<>(0, 10, 0);
         meiaSpinner.setLayoutX(240);
@@ -229,7 +248,7 @@ public class Tela02 {
 
         for (int i = 0; i < filme.getSessoes().size(); i++) {
             Sessao sessaoAtual = filme.getSessoes().get(i);
-            if (sessaoAtual.getIngressosTotais() - sessaoAtual.getIngressosComprados() == 0) {
+            if (sessaoAtual.getIngressosTotais() - sessaoAtual.getIngressosComprados() <= 0) {
                 continue;
             }
 
