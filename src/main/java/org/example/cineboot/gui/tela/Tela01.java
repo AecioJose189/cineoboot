@@ -1,4 +1,4 @@
-package org.example.cineboot.gui;
+package org.example.cineboot.gui.tela;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -1,4 +1,4 @@
-package org.example.cineboot.gui;
+package org.example.cineboot.gui.tela;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import org.example.cineboot.negocio.Filme;
 import org.example.cineboot.dados.DB;
 import org.example.cineboot.negocio.*;
+import org.example.cineboot.negocio.ingresso.IngressoMeiaEntrada;
+import org.example.cineboot.negocio.ingresso.IngressoVip;
 
 import java.io.IOException;
 import java.net.URL;
@@ -165,7 +167,6 @@ public class Tela02 {
 
 
     private Stage popup() {
-        // Criando o Stage
         Stage stage = new Stage();
         stage.setWidth(200);
         stage.setHeight(200);

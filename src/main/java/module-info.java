@@ -10,4 +10,8 @@ module org.example.cineboot {
     opens org.example.cineboot.gui to javafx.fxml;
     exports org.example.cineboot.negocio;
     opens org.example.cineboot.negocio to javafx.fxml;
+    exports org.example.cineboot.negocio.ingresso;
+    opens org.example.cineboot.negocio.ingresso to javafx.fxml;
+    exports org.example.cineboot.gui.tela;
+    opens org.example.cineboot.gui.tela to javafx.fxml;
 }

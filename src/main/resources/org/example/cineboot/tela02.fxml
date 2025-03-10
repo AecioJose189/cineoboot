@@ -37,7 +37,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="700.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cineboot.gui.Tela02">
+<VBox prefHeight="700.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cineboot.gui.tela.Tela02">
   <children>
     <AnchorPane fx:id="root" maxHeight="-1.0" maxWidth="-1.0" prefHeight="473.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
          <children>

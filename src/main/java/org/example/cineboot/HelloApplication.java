@@ -21,3 +21,10 @@ public class HelloApplication extends Application {
         launch();
     }
 }
+
+
+
+// DFS(nó, visitado):
+// marcar nó como visitado
+// para cada vizinho não visitado do nó:
+// DFS(vizinho, visitado)

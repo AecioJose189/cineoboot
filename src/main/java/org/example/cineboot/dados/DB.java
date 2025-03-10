@@ -4,7 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.example.cineboot.gui.Tela02;
 import org.example.cineboot.negocio.Filme;
 import org.example.cineboot.negocio.Sessao;
 import org.example.cineboot.negocio.Venda;

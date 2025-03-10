@@ -1,4 +1,8 @@
-package org.example.cineboot.negocio;
+package org.example.cineboot.negocio.ingresso;
+
+import org.example.cineboot.negocio.Desconto;
+import org.example.cineboot.negocio.Filme;
+import org.example.cineboot.negocio.Sessao;
 
 public class IngressoMeiaEntrada extends Ingresso implements Desconto {
     public IngressoMeiaEntrada(double preco, Filme filme, Sessao sessao) {

@@ -19,7 +19,7 @@
                 "horario": "20:00",
                 "ingressosTotais": 50,
                 "id": 2,
-                "ingressosComprados": 3
+                "ingressosComprados": 6
             },
             {
                 "data": "11/03/2025",
@@ -73,7 +73,7 @@
                 "horario": "22:00",
                 "ingressosTotais": 50,
                 "id": 8,
-                "ingressosComprados": 0
+                "ingressosComprados": 30
             },
             {
                 "data": "12/03/2025",

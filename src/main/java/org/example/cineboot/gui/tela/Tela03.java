@@ -1,4 +1,4 @@
-package org.example.cineboot.gui;
+package org.example.cineboot.gui.tela;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.example.cineboot.negocio.Filme;
 import org.example.cineboot.negocio.Sessao;

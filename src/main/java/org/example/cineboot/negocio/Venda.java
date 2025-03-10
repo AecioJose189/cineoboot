@@ -1,5 +1,7 @@
 package org.example.cineboot.negocio;
 
+import org.example.cineboot.negocio.ingresso.Ingresso;
+
 import java.util.ArrayList;
 import java.util.List;
 

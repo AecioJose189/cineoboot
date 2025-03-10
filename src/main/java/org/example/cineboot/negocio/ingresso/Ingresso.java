@@ -1,4 +1,7 @@
-package org.example.cineboot.negocio;
+package org.example.cineboot.negocio.ingresso;
+
+import org.example.cineboot.negocio.Filme;
+import org.example.cineboot.negocio.Sessao;
 
 public abstract class Ingresso {
     protected Filme filme;
