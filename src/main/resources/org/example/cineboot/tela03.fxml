@@ -32,40 +32,44 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cineboot.gui.Tela03">
+<VBox prefHeight="700.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cineboot.gui.Tela03">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
       <children>
-            <Label layoutX="121.0" layoutY="105.0" text="Seu ingresso foi processado!">
+            <Label layoutX="122.0" layoutY="77.0" text="Seu ingresso foi processado!">
                <font>
                   <Font size="29.0" />
                </font>
             </Label>
-            <Label fx:id="dataLabelPg3" alignment="CENTER" contentDisplay="CENTER" layoutX="207.0" layoutY="200.0" text="Data da sessão: 12/10/2025" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+            <Label fx:id="dataLabelPg3" alignment="CENTER" contentDisplay="CENTER" layoutX="208.0" layoutY="450.0" text="Data da sessão: 12/10/2025" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="horarioLabelPg3" alignment="CENTER" contentDisplay="CENTER" layoutX="214.0" layoutY="232.0" text="Horário da sessão: 18:00" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+            <Label fx:id="horarioLabelPg3" alignment="CENTER" contentDisplay="CENTER" layoutX="220.0" layoutY="482.0" text="Horário da sessão: 18:00" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="concluir" layoutX="274.0" layoutY="314.0" mnemonicParsing="false" text="Concluir" />
-            <Label fx:id="ingressosQuantidadePg3" alignment="CENTER" contentDisplay="CENTER" layoutX="203.0" layoutY="263.0" text="Quantidade de ingressos: 2" textOverrun="CENTER_ELLIPSIS">
+            <Button fx:id="concluir" layoutX="275.0" layoutY="564.0" mnemonicParsing="false" text="Concluir" />
+            <Label fx:id="ingressosQuantidadePg3" alignment="CENTER" contentDisplay="CENTER" layoutX="191.0" layoutY="513.0" text="Quantidade total de ingressos: 2" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="nomeDoFilmePg3" alignment="CENTER" contentDisplay="CENTER" layoutX="169.0" layoutY="162.0" prefHeight="30.0" prefWidth="261.0" text="Nome do filme" textOverrun="CENTER_ELLIPSIS">
+            <Label fx:id="nomeDoFilmePg3" alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="412.0" prefHeight="30.0" prefWidth="261.0" text="Nome do filme" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
+            <ImageView fx:id="imagePage34" fitHeight="270.0" fitWidth="214.0" layoutX="203.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true" />
       </children>
     </AnchorPane>
   </children>

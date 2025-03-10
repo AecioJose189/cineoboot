@@ -7,10 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.example.cineboot.Filme;
 import org.example.cineboot.negocio.Sessao;
 import java.io.IOException;
+import java.net.URL;
 
 public class Tela03 {
     private int quantidadeMeia;
@@ -25,9 +28,12 @@ public class Tela03 {
 
     private Sessao sessao;
 
+    @FXML
+    private ImageView imagemPag3;
 
     @FXML
     private Label nomeDoFilmePg3;
+
 
     @FXML
     private Label dataLabelPg3;
@@ -42,6 +48,11 @@ public class Tela03 {
     private void initialize() {
         buttonFinal();
     }
+
+    private static final String PATH_AINDA_ESTOU_AQUI = "/org/example/cineboot/image/aindaestouaqui.jpg";
+    private static final String PATH_AVATAR = "/org/example/cineboot/image/avatar.jpg";
+    private static final String PATH_HOMEM_ARANHA = "/org/example/cineboot/image/homemaranha.jpg";
+    private static final String PATH_OPPENHEIMER = "/org/example/cineboot/image/oppenheimer.jpg";
 
     public void setDetalhes(Filme filme, Sessao sessao, int quantidadeMeia, int quantidadeInteira, int quantidadeVip) {
         this.filme = filme;
@@ -90,6 +101,17 @@ public class Tela03 {
             horarioLabelPg3.setText("Horario da sessão: "+sessao.getHorario());
             dataLabelPg3.setText("Data da sessão: "+sessao.getData());
         }
+
+        String imagePath = filme.getImagem().replace("resources", "");
+        URL imageUrl = getClass().getResource(imagePath);
+
+        if (imageUrl != null) {
+            imagemPag3.setImage(new Image(imageUrl.toString()));
+        } else {
+            System.out.println("Imagem não encontrada: " + imagePath);
+        }
+
+
     }
 
 

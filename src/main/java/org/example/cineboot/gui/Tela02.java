@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -18,7 +19,9 @@ import org.example.cineboot.dados.DB;
 import org.example.cineboot.negocio.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Tela02 {
@@ -63,6 +66,11 @@ public class Tela02 {
     private Spinner<Integer> inteiraSpinner;
     private Spinner<Integer> vipSpinner;
     private Set<String> horarios;
+
+    private static final String PATH_AINDA_ESTOU_AQUI = "/org/example/cineboot/image/aindaestouaqui.jpg";
+    private static final String PATH_AVATAR = "/org/example/cineboot/image/avatar.jpg";
+    private static final String PATH_HOMEM_ARANHA = "/org/example/cineboot/image/homemaranha.jpg";
+    private static final String PATH_OPPENHEIMER = "/org/example/cineboot/image/oppenheimer.jpg";
 
     @FXML
     private void initialize() {
@@ -190,6 +198,35 @@ public class Tela02 {
         duracaoLabel.setText("Duração: " + filme.getDuracao());
         classificacaoLabel.setText("Classificação: " + filme.getClassificacao());
 
+        String imagePath = "";
+
+        switch (id) {
+            case 1:
+                imagePath = PATH_AVATAR;
+                break;
+            case 2:
+                imagePath = PATH_HOMEM_ARANHA;
+                break;
+            case 3:
+                imagePath = PATH_OPPENHEIMER;
+                break;
+            case 4:
+                imagePath = PATH_AINDA_ESTOU_AQUI;
+                break;
+            default:
+                System.out.println("Nenhuma imagem encontrada para o ID: " + id);
+                return;
+        }
+
+        URL imageUrl = getClass().getResource(imagePath);
+
+        if (imageUrl != null) {
+            imagemPag2.setImage(new Image(imageUrl.toString()));
+        } else {
+            System.out.println("Imagem não encontrada: " + imagePath);
+        }
+
+
         for (int i = 0; i < filme.getSessoes().size(); i++) {
             Sessao sessaoAtual = filme.getSessoes().get(i);
             if (sessaoAtual.getIngressosTotais() - sessaoAtual.getIngressosComprados() == 0) {
@@ -207,7 +244,6 @@ public class Tela02 {
             onEscolherHorario(newValue);
         });
 
-        // imagemPag2.setImage(new Image(filme.getImagem()));
     }
 
     public void botaoVoltar() {
