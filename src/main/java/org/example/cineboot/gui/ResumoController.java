@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.example.cineboot.negocio.Auth;
 import org.example.cineboot.negocio.Filme;
 import org.example.cineboot.negocio.Sessao;
 
@@ -36,8 +37,12 @@ public class ResumoController {
     @FXML
     private Label ingressosQuantidadePg3;
 
+    private Auth auth;
+
+
     @FXML
     private void initialize() {
+        auth = Auth.getInstance();
         buttonFinal();
     }
 
@@ -51,6 +56,7 @@ public class ResumoController {
     public void buttonFinal() {
         concluir.setOnAction(
                 event -> {
+                    auth.refresh();
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/home.fxml"));
                         Parent root = loader.load();

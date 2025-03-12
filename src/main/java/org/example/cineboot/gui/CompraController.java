@@ -60,6 +60,7 @@ public class CompraController {
     private Button confirmarEscolhaPg2;
 
     private DB db;
+    private Auth auth;
     private Filme filme;
     private Sessao sessao;
     private Spinner<Integer> meiaSpinner;
@@ -76,6 +77,7 @@ public class CompraController {
     private void initialize() {
         botaoVoltar();
         db = DB.getInstance();
+        auth = Auth.getInstance();
         horarios = new HashSet<>();
         setupButton();
     }
@@ -132,6 +134,9 @@ public class CompraController {
                     for (int i = 0; i < vipSpinner.getValue(); i++) {
                         venda.adicionarIngresso(new IngressoVip(20, filme, sessao));
                     }
+
+                    venda.setUsuario(auth.getUsuario());
+
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/resumo.fxml"));
                         Parent root = loader.load();

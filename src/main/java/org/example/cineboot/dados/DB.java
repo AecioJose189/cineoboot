@@ -1,9 +1,6 @@
 package org.example.cineboot.dados;
 
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import org.example.cineboot.Usuario;
 import org.example.cineboot.negocio.Filme;
 import org.example.cineboot.negocio.Sessao;
 import org.example.cineboot.negocio.Venda;
@@ -11,24 +8,45 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DB {
     private static DB instance;
-    private final File file = new File("src/main/resources/org/example/cineboot/data/db.json");
-
-    private DB() {
-    }
+    private final File moviesDbFile = new File("src/main/resources/org/example/cineboot/data/db.json");
+    private final File usersDbFile = new File("src/main/resources/org/example/cineboot/data/users.json");
 
     public void processarVenda(Venda venda) throws Exception {
         int ingressosComprados = venda.getIngressos().size();
         Sessao sessao = venda.getIngressos().getFirst().getSessao();
         Filme filme = venda.getIngressos().getFirst().getFilme();
+        Usuario usuario = venda.getUsuario();
 
         try {
-            String content = new String(Files.readAllBytes(Paths.get(file.getPath())));
+            String content = new String(Files.readAllBytes(Paths.get(usersDbFile.getPath())));
+            JSONArray json = new JSONArray(content);
+
+            for (int i = 0; i < json.length(); i++) {
+                JSONObject user = json.getJSONObject(i);
+                if (usuario.getId() == user.getInt("id")) {
+                    int qtdIngressos = user.getInt("quantidadeIngressos");
+                    user.put("quantidadeIngressos", ingressosComprados + qtdIngressos);
+
+                    Files.write(
+                            Paths.get(usersDbFile.getPath()),
+                            json.toString(4).getBytes()
+                    );
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(moviesDbFile.getPath())));
             JSONArray json = new JSONArray(content);
 
             boolean encontrou = false;
@@ -54,7 +72,7 @@ public class DB {
 
             if (encontrou) {
                 Files.write(
-                        Paths.get(file.getPath()),
+                        Paths.get(moviesDbFile.getPath()),
                         json.toString(4).getBytes()
                 );
             }
@@ -65,9 +83,8 @@ public class DB {
     }
 
     public Filme getFilme(int id) {
-        Filme filme1 = null;
         try {
-            String content = new String(Files.readAllBytes(Paths.get(file.toURI())));
+            String content = new String(Files.readAllBytes(Paths.get(moviesDbFile.toURI())));
             JSONArray json = new JSONArray(content);
             for (int j = 0; j < json.length(); j++) {
                 JSONObject jsonObject = json.getJSONObject(j);
@@ -103,10 +120,30 @@ public class DB {
         } catch (Exception e) {
             System.out.println("Erro ao obter filme: " + e.getMessage());
         }
-
-        return filme1;
+        return null;
     }
 
+    public List<Usuario> carregarUsuarios() {
+        List<Usuario> usuarios = new ArrayList<>();
+
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(usersDbFile.toURI())));
+            JSONArray jsonArray = new JSONArray(content);
+            for (int j = 0; j < jsonArray.length(); j++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(j);
+                Usuario usuario = new Usuario(
+                        jsonObject.getString("login"),
+                        jsonObject.getString("senha"),
+                        jsonObject.getInt("quantidadeIngressos"),
+                        jsonObject.getInt("id")
+                );
+                usuarios.add(usuario);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return usuarios;
+    }
 
     public static DB getInstance() {
         if (instance == null) {
