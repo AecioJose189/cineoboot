@@ -64,8 +64,6 @@ public class DB {
         }
     }
 
-
-
     public Filme getFilme(int id) {
         Filme filme1 = null;
         try {

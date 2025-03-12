@@ -1,4 +1,4 @@
-package org.example.cineboot.gui.tela;
+package org.example.cineboot.gui;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -13,7 +13,6 @@ import javafx.scene.control.Spinner;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.example.cineboot.negocio.Filme;
 import org.example.cineboot.dados.DB;
@@ -26,7 +25,7 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Tela02 {
+public class CompraController {
     @FXML
     private Label nomeDoFilmepg2;
 
@@ -134,10 +133,10 @@ public class Tela02 {
                         venda.adicionarIngresso(new IngressoVip(20, filme, sessao));
                     }
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela03.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/resumo.fxml"));
                         Parent root = loader.load();
 
-                        Tela03 tela03Controller = loader.getController();
+                        ResumoController tela03Controller = loader.getController();
 
                         tela03Controller.setDetalhes(filme, sessao, quantidadeMeia, quantidadeInteira, quantidadeVip);
 
@@ -151,39 +150,16 @@ public class Tela02 {
 
                     } catch (IOException e) {
                         System.out.println("Erro ao carregar tela 03: " + e.getMessage());
-                        confirmarEscolhaPg2.setOnAction(value -> popup().show());
                     }
 
                     try {
                         db.processarVenda(venda);
                     } catch (Exception e) {
                         System.out.println("Erro ao processar venda no banco de dados: " + e.getMessage());
-                        popup();
                     }
                 }
 
         );
-    }
-
-
-    private Stage popup() {
-        Stage stage = new Stage();
-        stage.setWidth(200);
-        stage.setHeight(200);
-        stage.setX(Math.random() * 500);
-        stage.setY(Math.random() * 1000);
-
-        Pane pane = new Pane();
-        Label label = new Label("Erro: Algo deu errado!");
-        label.setLayoutX(50);
-        label.setLayoutY(80);
-
-        pane.getChildren().add(label);
-
-        Scene scene = new Scene(pane);
-        stage.setScene(scene);
-
-        return stage;
     }
 
 
@@ -273,7 +249,7 @@ public class Tela02 {
     public void botaoVoltar() {
         voltarpg2.setOnMouseClicked(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela01.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/home.fxml"));
                 Parent root = loader.load();
 
                 Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();

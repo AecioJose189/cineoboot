@@ -1,18 +1,27 @@
-package org.example.cineboot.gui.tela;
+package org.example.cineboot.gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.example.cineboot.Usuario;
+import org.example.cineboot.negocio.Auth;
 
 import java.io.IOException;
 
-public class Tela01 {
+public class HomeController {
     @FXML
     private ImageView filmeAvatarPoster;
+
+    @FXML
+    private Label olaUsuario;
+
+    @FXML
+    private Label voceTemTantasMacas1;
 
     @FXML
     private ImageView filmeHomemAranha;
@@ -23,24 +32,30 @@ public class Tela01 {
     @FXML
     private ImageView filmeAindaEstouAqui;
 
+    private final Auth auth = Auth.getInstance();
 
     @FXML
     public void initialize() {
+        usuario = auth.getUsuario();
+        atualizarLabels();
         rodar();
     }
 
-    public Tela01(){
+    private Usuario usuario;
 
+    private void atualizarLabels() {
+        olaUsuario.setText("Bem-vindo, " + usuario.getLogin() + "!");
+        voceTemTantasMacas1.setText("Você tem " + usuario.quantidadeIngressos() + " ingressos comprados.");
     }
 
     // Evento de clique na imagem
     public void rodar() {
         filmeAvatarPoster.setOnMouseClicked(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela02.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/compra.fxml"));
                 Parent root = loader.load();
 
-                Tela02 controller = loader.getController();
+                CompraController controller = loader.getController();
                 controller.inicializarTelaComFilme(1);
 
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -58,10 +73,10 @@ public class Tela01 {
         });
         filmeHomemAranha.setOnMouseClicked(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela02.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/compra.fxml"));
                 Parent root = loader.load();
 
-                Tela02 controller = loader.getController();
+                CompraController controller = loader.getController();
                 controller.inicializarTelaComFilme(2);
 
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -79,10 +94,10 @@ public class Tela01 {
         });
         filmeOppenheimerPoster.setOnMouseClicked(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela02.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/compra.fxml"));
                 Parent root = loader.load();
 
-                Tela02 controller = loader.getController();
+                CompraController controller = loader.getController();
                 controller.inicializarTelaComFilme(3);
 
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -100,10 +115,10 @@ public class Tela01 {
         });
         filmeAindaEstouAqui.setOnMouseClicked(event -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela02.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/compra.fxml"));
                 Parent root = loader.load();
 
-                Tela02 controller = loader.getController();
+                CompraController controller = loader.getController();
                 controller.inicializarTelaComFilme(4);
 
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -117,8 +132,6 @@ public class Tela01 {
             } catch (IOException e) {
                 System.out.println("Erro ao carregar a tela de detalhes do filme Ainda Estou Aqui: " + e.getMessage());
             }
-
         });
-
     }
 }

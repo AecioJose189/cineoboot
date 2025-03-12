@@ -1,4 +1,4 @@
-package org.example.cineboot.gui.tela;
+package org.example.cineboot.gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ import org.example.cineboot.negocio.Sessao;
 
 import java.io.IOException;
 
-public class Tela03 {
+public class ResumoController {
     private int quantidadeTotal;
 
     @FXML
@@ -52,7 +52,7 @@ public class Tela03 {
         concluir.setOnAction(
                 event -> {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/tela01.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/home.fxml"));
                         Parent root = loader.load();
 
                         Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();

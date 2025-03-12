@@ -32,12 +32,15 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="700.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cineboot.gui.tela.Tela02">
+<VBox prefHeight="700.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cineboot.gui.CompraController">
   <children>
     <AnchorPane fx:id="root" maxHeight="-1.0" maxWidth="-1.0" prefHeight="473.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
          <children>
@@ -63,12 +66,12 @@
                   <Font size="26.0" />
                </font>
             </Label>
-            <Label fx:id="meiaLabel" layoutX="90.0" layoutY="509.0" text="Meia:">
+            <Label fx:id="meiaLabel" layoutX="90.0" layoutY="509.0" text="Meia (R$12):">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="inteiraLabel" layoutX="90.0" layoutY="548.0" text="Inteira:">
+            <Label fx:id="inteiraLabel" layoutX="90.0" layoutY="548.0" text="Inteira (R$24):">
                <font>
                   <Font size="18.0" />
                </font>
@@ -87,7 +90,7 @@
                </font>
             </Label>
             <Label fx:id="sinopseLabel" alignment="TOP_LEFT" layoutX="39.0" layoutY="126.0" prefHeight="128.0" prefWidth="369.0" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." textOverrun="CLIP" wrapText="true" />
-            <Label layoutX="90.0" layoutY="586.0" text="Ingresso VIP">
+            <Label layoutX="90.0" layoutY="586.0" text="Ingresso VIP (R$12)">
                <font>
                   <Font size="18.0" />
                </font>

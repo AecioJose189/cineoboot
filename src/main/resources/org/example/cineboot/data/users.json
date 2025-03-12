@@ -1,0 +1,20 @@
+[
+    {
+        "senha": "senha01",
+        "quantidadeIngressos": 13,
+        "id": 1,
+        "login": "usuario01"
+    },
+    {
+        "senha": "senha02",
+        "quantidadeIngressos": 4,
+        "id": 2,
+        "login": "usuario02"
+    },
+    {
+        "senha": "senha03",
+        "quantidadeIngressos": 2,
+        "id": 3,
+        "login": "usuario03"
+    }
+]

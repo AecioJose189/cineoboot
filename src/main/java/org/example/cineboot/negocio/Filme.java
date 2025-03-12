@@ -9,15 +9,17 @@ public class Filme {
     private String classificacao;
     private String imagem;
     private ArrayList<Sessao> sessoes;
+    private Long id;
 
 
-    public Filme(String titulo, String descricao, String imagem, String duracao, String classificacao, ArrayList<Sessao> sessoes) {
+    public Filme(String titulo, String descricao, String imagem, String duracao, String classificacao, ArrayList<Sessao> sessoes ) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.imagem = imagem;
         this.duracao = duracao;
         this.classificacao = classificacao;
         this.sessoes = sessoes;
+        
     }
 
     public ArrayList<Sessao> getSessoes() {
@@ -67,4 +69,5 @@ public class Filme {
     public void setClassificacao(String classificacao) {
         this.classificacao = classificacao;
     }
+
 }
