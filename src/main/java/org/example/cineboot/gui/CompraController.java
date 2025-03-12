@@ -22,7 +22,9 @@ import org.example.cineboot.negocio.ingresso.IngressoVip;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 public class CompraController {
@@ -59,19 +61,27 @@ public class CompraController {
     @FXML
     private Button confirmarEscolhaPg2;
 
+
     private DB db;
     private Auth auth;
     private Filme filme;
     private Sessao sessao;
     private Spinner<Integer> meiaSpinner;
+    private Label precoMeiaLabel;
     private Spinner<Integer> inteiraSpinner;
+    private Label precoInteiraLabel;
     private Spinner<Integer> vipSpinner;
+    private Label precoVipLabel;
     private Set<String> horarios;
+    private Locale localBrasil = new Locale("pt", "BR");
+
 
     private static final String PATH_AINDA_ESTOU_AQUI = "/org/example/cineboot/image/aindaestouaqui.jpg";
     private static final String PATH_AVATAR = "/org/example/cineboot/image/avatar.jpg";
     private static final String PATH_HOMEM_ARANHA = "/org/example/cineboot/image/homemaranha.jpg";
     private static final String PATH_OPPENHEIMER = "/org/example/cineboot/image/oppenheimer.jpg";
+
+
 
     @FXML
     private void initialize() {
@@ -79,6 +89,8 @@ public class CompraController {
         db = DB.getInstance();
         auth = Auth.getInstance();
         horarios = new HashSet<>();
+        setupPrecoLabels();
+        setupSpinners();
         setupButton();
     }
 
@@ -167,6 +179,24 @@ public class CompraController {
         );
     }
 
+    private void setupPrecoLabels(){
+        precoMeiaLabel = new Label("");
+        precoInteiraLabel = new Label("");
+        precoVipLabel = new Label("");
+
+        precoMeiaLabel.setLayoutX(310);
+        precoMeiaLabel.setLayoutY(514);
+
+        precoInteiraLabel.setLayoutX(310);
+        precoInteiraLabel.setLayoutY(548);
+
+        precoVipLabel.setLayoutX(310);
+        precoVipLabel.setLayoutY(588);
+
+        root.getChildren().add(precoMeiaLabel);
+        root.getChildren().add(precoInteiraLabel);
+        root.getChildren().add(precoVipLabel);
+    }
 
     private void setupSpinners() {
         meiaSpinner = new Spinner<>(0, 10, 0);
@@ -174,18 +204,45 @@ public class CompraController {
         meiaSpinner.setLayoutY(514);
         meiaSpinner.setPrefHeight(25);
         meiaSpinner.setPrefWidth(62);
+        meiaSpinner.valueProperty().addListener(
+            (observable, oldValue, newValue) -> {
+                if (newValue >0) {
+                    precoMeiaLabel.setText(NumberFormat.getCurrencyInstance(localBrasil).format(newValue * 12));
+                } else {
+                    precoMeiaLabel.setText("");
+                }
+            }
+        );
 
         inteiraSpinner = new Spinner<>(0, 10, 0);
         inteiraSpinner.setLayoutX(240);
         inteiraSpinner.setLayoutY(548);
         inteiraSpinner.setPrefHeight(25);
         inteiraSpinner.setPrefWidth(62);
+        inteiraSpinner.valueProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if (newValue >0) {
+                        precoInteiraLabel.setText(NumberFormat.getCurrencyInstance(localBrasil).format(newValue * 24));
+                    } else {
+                        precoInteiraLabel.setText("");
+                    }
+                }
+        );
 
         vipSpinner = new Spinner<>(0, 10, 0);
         vipSpinner.setLayoutX(240);
         vipSpinner.setLayoutY(588);
         vipSpinner.setPrefHeight(25);
         vipSpinner.setPrefWidth(62);
+        vipSpinner.valueProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if (newValue >0) {
+                        precoVipLabel.setText(NumberFormat.getCurrencyInstance(localBrasil).format(newValue * 12));
+                    } else {
+                        precoVipLabel.setText("");
+                    }
+                }
+        );
 
         root.getChildren().add(meiaSpinner);
         root.getChildren().add(inteiraSpinner);
@@ -194,8 +251,6 @@ public class CompraController {
 
 
     public void exibirDetalhes(int id) {
-        setupSpinners();
-
         DB db = DB.getInstance();
         filme = db.getFilme(id);
 
