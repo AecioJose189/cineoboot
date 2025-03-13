@@ -44,35 +44,47 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="700.0" prefWidth="662.0" VBox.vgrow="ALWAYS">
       <children>
-            <Label id="selecioneFilmeDesejado" fx:id="selecioneFilmeDesejado" layoutX="41.0" layoutY="90.0" text="Selecione o filme desejado:">
+            <Label id="selecioneFilmeDesejado" fx:id="selecioneFilmeDesejado" layoutX="41.0" layoutY="90.0" text="Selecione o filme desejado:" AnchorPane.leftAnchor="20.0">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <ImageView fx:id="filmeAvatarPoster" fitHeight="254.0" fitWidth="200.0" layoutX="45.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="filmeAvatarPoster" fitHeight="254.0" fitWidth="171.0" layoutX="45.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0">
                <image>
                   <Image url="@image/avatar.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="filmeHomemAranha" fitHeight="254.0" fitWidth="200.0" layoutX="240.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="filmeHomemAranha" fitHeight="254.0" fitWidth="200.0" layoutX="230.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image/homemaranha.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="filmeOppenheimerPoster" fitHeight="254.0" fitWidth="200.0" layoutX="439.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="filmeOppenheimerPoster" fitHeight="254.0" fitWidth="200.0" layoutX="453.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="20.0">
                <image>
                   <Image url="@image/oppenheimer.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="filmeAindaEstouAqui" fitHeight="254.0" fitWidth="200.0" layoutX="41.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="filmeAindaEstouAqui" fitHeight="254.0" fitWidth="200.0" layoutX="20.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image/aindaestouaqui.jpg" />
                </image>
             </ImageView>
-            <Label fx:id="olaUsuario" layoutX="41.0" layoutY="40.0" prefHeight="17.0" prefWidth="259.0" text="Olá usuário fulaninho!" />
-            <Label fx:id="voceTemTantasMacas1" layoutX="41.0" layoutY="65.0" prefHeight="17.0" prefWidth="259.0" text="Você tem tantas maçãs" />
-            <Button fx:id="minhasComprasButton" layoutX="472.0" layoutY="78.0" mnemonicParsing="false" text="Minhas compras" />
-            <Button fx:id="cadastrarUsuarioButton" layoutX="462.0" layoutY="48.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Cadastrar usuário" />
+            <Label fx:id="olaUsuario" layoutX="41.0" layoutY="40.0" text="Bem vindo usuário!" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
+            <Label fx:id="voceTemTantasMacas1" layoutX="20.0" layoutY="52.0" text="Você tem X ingressos comprados" AnchorPane.leftAnchor="20.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Button fx:id="minhasComprasButton" layoutX="507.0" layoutY="62.0" mnemonicParsing="false" text="Minhas compras" AnchorPane.rightAnchor="20.0">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="cadastrarUsuarioButton" layoutX="496.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" text="Cadastrar usuário" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
 
       </children>
     </AnchorPane>

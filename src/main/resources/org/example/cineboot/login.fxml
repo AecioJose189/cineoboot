@@ -28,5 +28,4 @@
     <Label text="Senha:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
     <PasswordField fx:id="senhaField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     <Button fx:id="loginButton" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-   <Button fx:id="cadastrarButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Button" translateX="96.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 </GridPane>

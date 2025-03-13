@@ -18,8 +18,6 @@ public class LoginController {
     @FXML private TextField loginField;
     @FXML private PasswordField senhaField;
     @FXML private Button loginButton;
-    @FXML
-    private Button cadastrarButton;
 
     private Auth auth = Auth.getInstance();
 

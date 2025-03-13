@@ -2,8 +2,15 @@
     {
         "senha": "123",
         "tipo": "ADMINISTRADOR",
-        "compras": [],
-        "quantidadeIngressos": 0,
+        "compras": [{
+            "filmeId": "75d3a937-2f96-4e2f-9889-a5ec2e60b9f7",
+            "quantidadeInteira": 1,
+            "sessaoId": "b8558f17-8267-4615-ae19-084ab0d4a3e1",
+            "quantidadeVip": 0,
+            "id": "fa4e5adb-02bf-4f5e-9875-a6e2e76171bd",
+            "quantidadeMeia": 2
+        }],
+        "quantidadeIngressos": 3,
         "nome": "Conta de ADM",
         "id": "6d2d4a51-f339-4777-96bc-0587f6c898f3",
         "isVip": true,
@@ -28,5 +35,32 @@
         "id": "dabe6b81-d917-431e-885c-cc7d5b2b4f77",
         "isVip": false,
         "username": "789"
+    },
+    {
+        "senha": "223423",
+        "tipo": "CLIENTE",
+        "compras": [],
+        "quantidadeIngressos": 0,
+        "nome": "aecioteste",
+        "id": "9f03dbc1-fefa-454c-b76c-a74419b1abd6",
+        "isVip": true,
+        "username": "perfilTeste"
+    },
+    {
+        "senha": "123",
+        "tipo": "CLIENTE",
+        "compras": [{
+            "filmeId": "7026de69-7acc-4bec-85cd-299679bd770f",
+            "quantidadeInteira": 0,
+            "sessaoId": "e167f205-9994-4ab4-beed-657a28d4f5b1",
+            "quantidadeVip": 2,
+            "id": "66e3cd10-e2c5-463c-bbef-bab720f5a0d2",
+            "quantidadeMeia": 2
+        }],
+        "quantidadeIngressos": 4,
+        "nome": "prog2",
+        "id": "03c3a456-db38-49bc-bce8-7cb7beadacd3",
+        "isVip": true,
+        "username": "Gustavo Callou"
     }
 ]

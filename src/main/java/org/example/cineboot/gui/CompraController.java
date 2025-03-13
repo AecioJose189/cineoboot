@@ -221,22 +221,22 @@ public class CompraController {
 
     private void setupPrecoLabels() {
         precoMeiaLabel = new Label("");
-        precoMeiaLabel.setLayoutX(310);
+        precoMeiaLabel.setLayoutX(330);
         precoMeiaLabel.setLayoutY(514);
 
         precoInteiraLabel = new Label("");
-        precoInteiraLabel.setLayoutX(310);
+        precoInteiraLabel.setLayoutX(330);
         precoInteiraLabel.setLayoutY(548);
 
         if (isUserVip) {
             precoVipLabel = new Label("");
-            precoVipLabel.setLayoutX(310);
+            precoVipLabel.setLayoutX(330);
             precoVipLabel.setLayoutY(588);
             root.getChildren().add(precoVipLabel);
         }
 
         precoTotalLabel = new Label("");
-        precoTotalLabel.setLayoutX(310);
+        precoTotalLabel.setLayoutX(330);
         precoTotalLabel.setLayoutY(628);
 
         root.getChildren().add(precoMeiaLabel);
@@ -254,7 +254,7 @@ public class CompraController {
 
     private void setupSpinners() {
         meiaSpinner = new Spinner<>(0, 10, 0);
-        meiaSpinner.setLayoutX(240);
+        meiaSpinner.setLayoutX(260);
         meiaSpinner.setLayoutY(514);
         meiaSpinner.setPrefHeight(25);
         meiaSpinner.setPrefWidth(62);
@@ -270,7 +270,7 @@ public class CompraController {
         );
 
         inteiraSpinner = new Spinner<>(0, 10, 0);
-        inteiraSpinner.setLayoutX(240);
+        inteiraSpinner.setLayoutX(260);
         inteiraSpinner.setLayoutY(548);
         inteiraSpinner.setPrefHeight(25);
         inteiraSpinner.setPrefWidth(62);
@@ -287,7 +287,7 @@ public class CompraController {
 
         if (isUserVip) {
             vipSpinner = new Spinner<>(0, 10, 0);
-            vipSpinner.setLayoutX(240);
+            vipSpinner.setLayoutX(260);
             vipSpinner.setLayoutY(588);
             vipSpinner.setPrefHeight(25);
             vipSpinner.setPrefWidth(62);
