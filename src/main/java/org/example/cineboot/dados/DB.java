@@ -118,7 +118,6 @@ public class DB {
             for (int j = 0; j < json.length(); j++) {
                 JSONObject jsonObject = json.getJSONObject(j);
                 if (jsonObject.getInt("id") == id) {
-                    System.out.println(jsonObject);
                     JSONArray sessoes = jsonObject.getJSONArray("sessoes");
                     ArrayList<Sessao> sessoesArrayList = new ArrayList<Sessao>();
 
@@ -153,6 +152,33 @@ public class DB {
         return null;
     }
 
+    public Sessao getSessao(int id) {
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(moviesDbFile.toURI())));
+            JSONArray json = new JSONArray(content);
+            for (int j = 0; j < json.length(); j++) {
+                JSONObject jsonObject = json.getJSONObject(j);
+                JSONArray sessoes = jsonObject.getJSONArray("sessoes");
+                for (int k = 0; k < sessoes.length(); k++) {
+                    JSONObject sessao = sessoes.getJSONObject(k);
+                    if (sessao.getInt("id") == id) {
+                        return new Sessao(
+                                sessao.getLong("id"),
+                                sessao.getString("data"),
+                                sessao.getString("horario"),
+                                sessao.getInt("ingressosTotais"),
+                                sessao.getInt("ingressosComprados")
+                        );
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao obter sessão: " + e.getMessage());
+        }
+        return null;
+    }
+
     public List<Usuario> carregarUsuarios() {
         List<Usuario> usuarios = new ArrayList<>();
 
@@ -162,10 +188,10 @@ public class DB {
             for (int j = 0; j < jsonArray.length(); j++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(j);
                 Usuario usuario = new Usuario(
+                        jsonObject.getInt("id"),
                         jsonObject.getString("login"),
                         jsonObject.getString("senha"),
-                        jsonObject.getInt("quantidadeIngressos"),
-                        jsonObject.getInt("id")
+                        jsonObject.getInt("quantidadeIngressos")
                 );
                 usuarios.add(usuario);
             }

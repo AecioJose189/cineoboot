@@ -1,21 +1,23 @@
 package org.example.cineboot;
 
+import org.example.cineboot.negocio.Compra;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
+    private int id;
     private String login;
     private String senha;
     private int quantidadeIngressos;
-    private int id;
+//    private ArrayList<Compra> compras;
 
-    public Usuario() {}
-
-    public Usuario(String login, String senha, int quantidadeIngressos, int id) {
+    public Usuario(int id, String login, String senha, int quantidadeIngressos) {
+        this.id = id;
         this.login = login;
         this.senha = senha;
         this.quantidadeIngressos = quantidadeIngressos;
-        this.id = id;
+//        this.compras = compras;
     }
 
     // Getters e setters

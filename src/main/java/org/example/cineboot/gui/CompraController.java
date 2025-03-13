@@ -81,8 +81,7 @@ public class CompraController {
 
     private float precoTotal;
 
-    private final Locale localBrasil = new Locale("pt", "BR");
-
+    private final Locale localBrasil = new Locale("pt","BR");
 
     private static final String PATH_claOPPENHEIMER = "/org/example/cineboot/image/classIndicativa/18 anos.png";
     private static final String PATH_claHOMEM_ARANHA = "/org/example/cineboot/image/classIndicativa/livre.png";;

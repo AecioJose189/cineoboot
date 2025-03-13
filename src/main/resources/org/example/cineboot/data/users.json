@@ -38,9 +38,25 @@
                 "quantidadeVip": 3,
                 "id": 1,
                 "quantidadeMeia": 1
+            },
+            {
+                "filmeId": 1,
+                "quantidadeInteira": 2,
+                "sessaoId": 2,
+                "quantidadeVip": 2,
+                "id": 1,
+                "quantidadeMeia": 1
+            },
+            {
+                "filmeId": 1,
+                "quantidadeInteira": 3,
+                "sessaoId": 2,
+                "quantidadeVip": 1,
+                "id": 1,
+                "quantidadeMeia": 2
             }
         ],
-        "quantidadeIngressos": 59,
+        "quantidadeIngressos": 70,
         "nome": "Aécio",
         "id": 1,
         "login": "joaoira"
@@ -49,22 +65,31 @@
         "senha": "123",
         "compras": [
             {
-                "quantidadeInteira": 2,
-                "sessaoId": 11,
-                "quantidadeVip": 3,
-                "id": 1,
-                "quantidadeMeia": 1
-            },
-            {
                 "filmeId": 2,
                 "quantidadeInteira": 2,
                 "sessaoId": 7,
                 "quantidadeVip": 3,
                 "id": 1,
                 "quantidadeMeia": 1
+            },
+            {
+                "filmeId": 1,
+                "quantidadeInteira": 2,
+                "sessaoId": 2,
+                "quantidadeVip": 2,
+                "id": 1,
+                "quantidadeMeia": 1
+            },
+            {
+                "filmeId": 1,
+                "quantidadeInteira": 3,
+                "sessaoId": 2,
+                "quantidadeVip": 1,
+                "id": 1,
+                "quantidadeMeia": 2
             }
         ],
-        "quantidadeIngressos": 24,
+        "quantidadeIngressos": 35,
         "nome": "123",
         "id": 1,
         "login": "123"

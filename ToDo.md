@@ -1,13 +1,13 @@
-# Objetivos
+# Tarefas
 
-## Histórico de compras
+[ ] Fazer a tela de histórico. **
 
-### Tarefas
+[ ] Tratamento de erros (criar classes para realizar esses tratamentos). **
 
-[ ] Salvar dados detalhados da compra.
+[ ] Adicionar tipo de usuário(admin e cliente) **
 
-[ ] Fazer a tela de histórico.
+[ ] Adicionar VIP.
 
-[ ] Fazer o botão para redirecionar para a tela de histórico.
+[ ] Adicionar Cadastro de usuário.
 
-[ ] Tratamento de erros (criar classes para realizar esses tratamentos).
+
