@@ -1,13 +1,13 @@
 package org.example.cineboot.negocio;
 
 public class Sessao {
-    private Long id;
+    private String id;
     private String data;
     private String horario;
     private Integer ingressosTotais;
     private Integer ingressosComprados;
 
-    public Sessao(Long id, String data, String horario, Integer ingressosTotais, Integer ingressosComprados) {
+    public Sessao(String id, String data, String horario, Integer ingressosTotais, Integer ingressosComprados) {
         this.id = id;
         this.data = data;
         this.horario = horario;
@@ -15,12 +15,11 @@ public class Sessao {
         this.ingressosComprados = ingressosComprados;
     }
 
-
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

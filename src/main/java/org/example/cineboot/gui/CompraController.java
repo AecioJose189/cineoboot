@@ -6,14 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.example.cineboot.exceptions.InvalidTicketQuantityException;
 import org.example.cineboot.negocio.Filme;
 import org.example.cineboot.dados.DB;
 import org.example.cineboot.negocio.*;
@@ -48,9 +46,6 @@ public class CompraController {
     private Label duracaoLabel;
 
     @FXML
-    private Label classificacaoLabel;
-
-    @FXML
     private AnchorPane root;
 
     @FXML
@@ -65,10 +60,14 @@ public class CompraController {
     @FXML
     private ImageView classIndicativaFoto;
 
+    @FXML
+    private Label ingressoVipLabel;
+
     private DB db;
     private Auth auth;
     private Filme filme;
     private Sessao sessao;
+    private boolean isUserVip;
 
     private Spinner<Integer> meiaSpinner;
     private Label precoMeiaLabel;
@@ -81,15 +80,13 @@ public class CompraController {
 
     private float precoTotal;
 
-    private final Locale localBrasil = new Locale("pt","BR");
+    private final Locale localBrasil = new Locale("pt", "BR");
 
     private static final String PATH_claOPPENHEIMER = "/org/example/cineboot/image/classIndicativa/18 anos.png";
-    private static final String PATH_claHOMEM_ARANHA = "/org/example/cineboot/image/classIndicativa/livre.png";;
+    private static final String PATH_claHOMEM_ARANHA = "/org/example/cineboot/image/classIndicativa/livre.png";
+    ;
     private static final String PATH_claAVATAR = "/org/example/cineboot/image/classIndicativa/12 anos.png";
     private static final String PATH_claAINDA_ESTOU_AQUI = "/org/example/cineboot/image/classIndicativa/14 anos.png";
-
-
-
 
     @FXML
     private void initialize() {
@@ -98,6 +95,11 @@ public class CompraController {
         db = DB.getInstance();
         auth = Auth.getInstance();
         horarios = new HashSet<>();
+        isUserVip = auth.getUsuario().getVip();
+
+        if (!isUserVip) {
+            ingressoVipLabel.setText("");
+        }
         setupPrecoLabels();
         setupSpinners();
         setupButton();
@@ -112,6 +114,7 @@ public class CompraController {
             }
         }
 
+        confirmarEscolhaPg2.setDisable(true);
         selecioneHorarioCbox.getItems().setAll(horarios);
     }
 
@@ -142,10 +145,18 @@ public class CompraController {
         confirmarEscolhaPg2.setOnAction(
                 event -> {
                     Venda venda = new Venda();
+                    boolean compraSucesso = false;
 
                     int quantidadeMeia = meiaSpinner.getValue();
                     int quantidadeInteira = inteiraSpinner.getValue();
-                    int quantidadeVip = vipSpinner.getValue();
+                    int quantidadeVip = 0;
+
+                    if (isUserVip) {
+                        quantidadeVip = vipSpinner.getValue();
+                        for (int i = 0; i < vipSpinner.getValue(); i++) {
+                            venda.adicionarIngresso(new IngressoVip(20, filme, sessao));
+                        }
+                    }
 
                     for (int i = 0; i < meiaSpinner.getValue(); i++) {
                         venda.adicionarIngresso(new IngressoMeiaEntrada(20, filme, sessao));
@@ -153,43 +164,62 @@ public class CompraController {
                     for (int i = 0; i < inteiraSpinner.getValue(); i++) {
                         venda.adicionarIngresso(new IngressoNormal(20, filme, sessao));
                     }
-                    for (int i = 0; i < vipSpinner.getValue(); i++) {
-                        venda.adicionarIngresso(new IngressoVip(20, filme, sessao));
-                    }
 
                     venda.setUsuario(auth.getUsuario());
 
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/resumo.fxml"));
-                        Parent root = loader.load();
-
-                        ResumoController tela03Controller = loader.getController();
-
-                        tela03Controller.setDetalhes(filme, sessao, quantidadeMeia, quantidadeInteira, quantidadeVip, precoTotal);
-
-                        Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        stageAtual.close();
-
-                        Stage stage = new Stage();
-                        stage.setTitle("Resumo do pedido");
-                        stage.setScene(new Scene(root, 650, 700));
-                        stage.show();
-
+                        db.processarVenda(venda);
+                        compraSucesso = true;
+                    } catch (InvalidTicketQuantityException e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erro");
+                        alert.setHeaderText("Ocorreu ao processar sua compra!");
+                        alert.setContentText("Você tentou comprar " + e.getQuantidadeComprada() + " ingressos de " + e.getQuantidadePermitida() + " ingressos disponíveis.");
+                        alert.showAndWait();
                     } catch (IOException e) {
-                        System.out.println("Erro ao carregar tela 03: " + e.getMessage());
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erro");
+                        alert.setHeaderText("Ocorreu ao processar sua compra!");
+                        alert.setContentText("Ocorreu um erro interno durante o processamento da sua compra, tente novamente mais tarde.");
+                        alert.showAndWait();
                     }
 
-                    try {
-                        db.processarVenda(venda);
-                    } catch (Exception e) {
-                        System.out.println("Erro ao processar venda no banco de dados: " + e.getMessage());
+                    if (compraSucesso) {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/resumo.fxml"));
+                            Parent root = loader.load();
+
+                            ResumoController resumoController = loader.getController();
+
+                            resumoController.setDetalhes(filme, sessao, quantidadeMeia, quantidadeInteira, quantidadeVip, precoTotal);
+
+                            Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stageAtual.close();
+
+                            Stage stage = new Stage();
+                            stage.setTitle("Resumo do pedido");
+                            stage.setScene(new Scene(root));
+                            stage.show();
+
+                        } catch (IOException e) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Erro");
+                            alert.setHeaderText("Ocorreu um erro interno");
+                            alert.setContentText("Ocorreu um erro ao carregar a tela de resumo, volte para o início.");
+                            alert.showAndWait();
+                        } catch (Exception e) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Erro");
+                            alert.setHeaderText("Ocorreu um erro interno");
+                            alert.setContentText(e.getMessage());
+                            alert.showAndWait();
+                        }
                     }
                 }
-
         );
     }
 
-    private void setupPrecoLabels(){
+    private void setupPrecoLabels() {
         precoMeiaLabel = new Label("");
         precoMeiaLabel.setLayoutX(310);
         precoMeiaLabel.setLayoutY(514);
@@ -198,9 +228,12 @@ public class CompraController {
         precoInteiraLabel.setLayoutX(310);
         precoInteiraLabel.setLayoutY(548);
 
-        precoVipLabel = new Label("");
-        precoVipLabel.setLayoutX(310);
-        precoVipLabel.setLayoutY(588);
+        if (isUserVip) {
+            precoVipLabel = new Label("");
+            precoVipLabel.setLayoutX(310);
+            precoVipLabel.setLayoutY(588);
+            root.getChildren().add(precoVipLabel);
+        }
 
         precoTotalLabel = new Label("");
         precoTotalLabel.setLayoutX(310);
@@ -208,12 +241,14 @@ public class CompraController {
 
         root.getChildren().add(precoMeiaLabel);
         root.getChildren().add(precoInteiraLabel);
-        root.getChildren().add(precoVipLabel);
         root.getChildren().add(precoTotalLabel);
     }
 
-    private void updatePrecoTotal(){
-        precoTotal = meiaSpinner.getValue() * 12 + inteiraSpinner.getValue() * 24 + vipSpinner.getValue() * 12;
+    private void updatePrecoTotal() {
+        precoTotal = meiaSpinner.getValue() * 12 + inteiraSpinner.getValue() * 24;
+        if (isUserVip) {
+            precoTotal += vipSpinner.getValue() * 12;
+        }
         precoTotalLabel.setText(NumberFormat.getCurrencyInstance(localBrasil).format(precoTotal));
     }
 
@@ -224,14 +259,14 @@ public class CompraController {
         meiaSpinner.setPrefHeight(25);
         meiaSpinner.setPrefWidth(62);
         meiaSpinner.valueProperty().addListener(
-            (observable, oldValue, newValue) -> {
-                updatePrecoTotal();
-                if (newValue >0) {
-                    precoMeiaLabel.setText(NumberFormat.getCurrencyInstance(localBrasil).format(newValue * 12));
-                } else {
-                    precoMeiaLabel.setText("");
+                (observable, oldValue, newValue) -> {
+                    updatePrecoTotal();
+                    if (newValue > 0) {
+                        precoMeiaLabel.setText(NumberFormat.getCurrencyInstance(localBrasil).format(newValue * 12));
+                    } else {
+                        precoMeiaLabel.setText("");
+                    }
                 }
-            }
         );
 
         inteiraSpinner = new Spinner<>(0, 10, 0);
@@ -242,7 +277,7 @@ public class CompraController {
         inteiraSpinner.valueProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     updatePrecoTotal();
-                    if (newValue >0) {
+                    if (newValue > 0) {
                         precoInteiraLabel.setText(NumberFormat.getCurrencyInstance(localBrasil).format(newValue * 24));
                     } else {
                         precoInteiraLabel.setText("");
@@ -250,29 +285,32 @@ public class CompraController {
                 }
         );
 
-        vipSpinner = new Spinner<>(0, 10, 0);
-        vipSpinner.setLayoutX(240);
-        vipSpinner.setLayoutY(588);
-        vipSpinner.setPrefHeight(25);
-        vipSpinner.setPrefWidth(62);
-        vipSpinner.valueProperty().addListener(
-                (observable, oldValue, newValue) -> {
-                    updatePrecoTotal();
-                    if (newValue >0) {
-                        precoVipLabel.setText(NumberFormat.getCurrencyInstance(localBrasil).format(newValue * 12));
-                    } else {
-                        precoVipLabel.setText("");
+        if (isUserVip) {
+            vipSpinner = new Spinner<>(0, 10, 0);
+            vipSpinner.setLayoutX(240);
+            vipSpinner.setLayoutY(588);
+            vipSpinner.setPrefHeight(25);
+            vipSpinner.setPrefWidth(62);
+            vipSpinner.valueProperty().addListener(
+                    (observable, oldValue, newValue) -> {
+                        updatePrecoTotal();
+                        if (newValue > 0) {
+                            precoVipLabel.setText(NumberFormat.getCurrencyInstance(localBrasil).format(newValue * 12));
+                        } else {
+                            precoVipLabel.setText("");
+                        }
                     }
-                }
-        );
+            );
+
+            root.getChildren().add(vipSpinner);
+        }
 
         root.getChildren().add(meiaSpinner);
         root.getChildren().add(inteiraSpinner);
-        root.getChildren().add(vipSpinner);
     }
 
 
-    public void exibirDetalhes(int id) {
+    public void exibirDetalhes(String id) {
         DB db = DB.getInstance();
         filme = db.getFilme(id);
 
@@ -286,16 +324,16 @@ public class CompraController {
         String imagePathClass;
 
         switch (id) {
-            case 1:
+            case "353a6f84-e979-4cf3-8fef-a934605afe22":
                 imagePathClass = PATH_claAVATAR;
                 break;
-            case 2:
+            case "75d3a937-2f96-4e2f-9889-a5ec2e60b9f7":
                 imagePathClass = PATH_claHOMEM_ARANHA;
                 break;
-            case 3:
+            case "31579740-785c-4f11-b202-e2854a193672":
                 imagePathClass = PATH_claOPPENHEIMER;
                 break;
-            case 4:
+            case "7026de69-7acc-4bec-85cd-299679bd770f":
                 imagePathClass = PATH_claAINDA_ESTOU_AQUI;
                 break;
             default:
@@ -306,7 +344,7 @@ public class CompraController {
         URL imageUrl = getClass().getResource(filme.getImagem());
         URL imageUrlClass = getClass().getResource(imagePathClass);
 
-        if (imageUrl !=null && imageUrlClass != null ) {
+        if (imageUrl != null && imageUrlClass != null) {
             imagemPag2.setImage(new Image(imageUrl.toString()));
             classIndicativaFoto.setImage(new Image(imageUrlClass.toString()));
         } else {
@@ -351,7 +389,7 @@ public class CompraController {
     }
 
 
-    public void inicializarTelaComFilme(int id) {
+    public void inicializarTelaComFilme(String id) {
         exibirDetalhes(id);
     }
 

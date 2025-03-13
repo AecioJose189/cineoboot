@@ -5,16 +5,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.example.cineboot.Usuario;
+import org.example.cineboot.negocio.TipoDeUsuario;
+import org.example.cineboot.negocio.Usuario;
+import org.example.cineboot.dados.DB;
 import org.example.cineboot.negocio.Auth;
-import org.example.cineboot.negocio.Compra;
 import org.example.cineboot.negocio.Filme;
 
 import java.io.IOException;
+import java.util.List;
+
 
 public class HomeController {
     @FXML
@@ -38,11 +42,21 @@ public class HomeController {
     @FXML
     private ImageView filmeAindaEstouAqui;
 
+    @FXML
+    private Button cadastrarUsuarioButton;
+
     private final Auth auth = Auth.getInstance();
+
+    private List<Filme> filmes;
 
     @FXML
     public void initialize() {
         usuario = auth.getUsuario();
+
+        if (!usuario.getTipo().equals(TipoDeUsuario.ADMINISTRADOR)) {
+            cadastrarUsuarioButton.setVisible(false);
+        }
+
         atualizarLabels();
         rodar();
     }
@@ -50,12 +64,38 @@ public class HomeController {
     private Usuario usuario;
 
     private void atualizarLabels() {
-        olaUsuario.setText("Bem-vindo, " + usuario.getLogin() + "!");
+        olaUsuario.setText("Bem-vindo, " + usuario.getNome() + "!");
         voceTemTantasMacas1.setText("Você tem " + usuario.quantidadeIngressos() + " ingressos comprados.");
     }
 
-    // Evento de clique na imagem
     public void rodar() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erro");
+        alert.setHeaderText("Ocorreu um erro ao carregar a tela de compra de ingresso");
+
+//        filmes = db.getFilmes();
+//
+//        for (Filme filme : filmes) {
+//
+//        }
+        cadastrarUsuarioButton.setOnAction(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/cadastro.fxml"));
+                Parent root = loader.load();
+
+                Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stageAtual.close();
+
+                Stage stage = new Stage();
+                stage.setTitle("Cadastrar usuário");
+                stage.setScene(new Scene(root, 650, 700));
+                stage.show();
+            } catch (IOException e) {
+                alert.setHeaderText("Ocorreu um erro interno.");
+                alert.setContentText("Erro ao carregar a tela de minhas compras.");
+                alert.showAndWait();
+            }
+        });
 
         minhasComprasButton.setOnAction(event -> {
             try {
@@ -63,9 +103,7 @@ public class HomeController {
                 Parent root = loader.load();
 
                 MinhasComprasController controller = loader.getController();
-                controller.setupMinhasCompras(new Compra(
-                        1, 2, 7, 3, 1, 1L
-                ));
+                controller.setupMinhasCompras();
 
                 Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stageAtual.close();
@@ -75,9 +113,9 @@ public class HomeController {
                 stage.setScene(new Scene(root, 650, 700));
                 stage.show();
             } catch (IOException e) {
-                System.out.println("Erro ao carregar a tela de minhas compras: " + e.getMessage());
-                System.out.println(e.getMessage());
-                e.printStackTrace();
+                alert.setHeaderText("Ocorreu um erro interno.");
+                alert.setContentText("Erro ao carregar a tela de minhas compras.");
+                alert.showAndWait();
             }
         });
 
@@ -87,7 +125,7 @@ public class HomeController {
                 Parent root = loader.load();
 
                 CompraController controller = loader.getController();
-                controller.inicializarTelaComFilme(1);
+                controller.inicializarTelaComFilme("353a6f84-e979-4cf3-8fef-a934605afe22");
 
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 primaryStage.close();
@@ -98,7 +136,8 @@ public class HomeController {
                 stage.show();
 
             } catch (IOException e) {
-                System.out.println("Erro ao carregar a tela de detalhes do filme Avatar: " + e.getMessage());
+                alert.setContentText("Erro ao carregar dados do filme Avatar.");
+                alert.showAndWait();
             }
 
         });
@@ -108,7 +147,7 @@ public class HomeController {
                 Parent root = loader.load();
 
                 CompraController controller = loader.getController();
-                controller.inicializarTelaComFilme(2);
+                controller.inicializarTelaComFilme("75d3a937-2f96-4e2f-9889-a5ec2e60b9f7");
 
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 primaryStage.close();
@@ -119,7 +158,8 @@ public class HomeController {
                 stage.show();
 
             } catch (IOException e) {
-                System.out.println("Erro ao carregar a tela de detalhes do filme Homem aranha: " + e.getMessage());
+                alert.setContentText("Erro ao carregar dados do filme Homem Aranha.");
+                alert.showAndWait();
             }
 
         });
@@ -129,7 +169,7 @@ public class HomeController {
                 Parent root = loader.load();
 
                 CompraController controller = loader.getController();
-                controller.inicializarTelaComFilme(3);
+                controller.inicializarTelaComFilme("31579740-785c-4f11-b202-e2854a193672");
 
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 primaryStage.close();
@@ -140,7 +180,8 @@ public class HomeController {
                 stage.show();
 
             } catch (IOException e) {
-                System.out.println("Erro ao carregar a tela de detalhes do filme Oppenheimer: " + e.getMessage());
+                alert.setContentText("Erro ao carregar dados do filme Oppenheimer.");
+                alert.showAndWait();
             }
 
         });
@@ -150,7 +191,7 @@ public class HomeController {
                 Parent root = loader.load();
 
                 CompraController controller = loader.getController();
-                controller.inicializarTelaComFilme(4);
+                controller.inicializarTelaComFilme("7026de69-7acc-4bec-85cd-299679bd770f");
 
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 primaryStage.close();
@@ -161,7 +202,8 @@ public class HomeController {
                 stage.show();
 
             } catch (IOException e) {
-                System.out.println("Erro ao carregar a tela de detalhes do filme Ainda Estou Aqui: " + e.getMessage());
+                alert.setContentText("Erro ao carregar dados do filme Ainda Estou Aqui.");
+                alert.showAndWait();
             }
         });
     }

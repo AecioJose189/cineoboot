@@ -13,132 +13,22 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.cineboot.gui.MinhasComprasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
+            prefWidth="650.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.cineboot.gui.MinhasComprasController">
     <children>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Minhas compras" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Minhas compras" AnchorPane.leftAnchor="20.0"
+              AnchorPane.topAnchor="20.0">
             <font>
-                <Font name="System Bold" size="28.0" />
+                <Font name="System Bold" size="28.0"/>
             </font>
         </Text>
-        <ScrollPane prefHeight="580.0" prefWidth="610.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="74.0" fx:id="scrollPane">
+        <ScrollPane prefHeight="580.0" prefWidth="610.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="74.0">
             <content>
-                <VBox>
-                    <children>
-                        <HBox prefHeight="150.0" prefWidth="609.0" spacing="20.0">
-                            <children>
-                                <ImageView fx:id="imagemFilme" fitHeight="150.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" />
-                                <VBox prefHeight="150.0" prefWidth="450.0" spacing="24.0">
-                                    <children>
-                                        <VBox>
-                                            <children>
-                                                <HBox alignment="CENTER_LEFT" spacing="16.0">
-                                                    <children>
-                                                        <Label fx:id="nomeDoFilmeLabel" minWidth="-Infinity" prefWidth="320.0" text="Nome do filme">
-                                                            <font>
-                                                                <Font size="28.0" />
-                                                            </font>
-                                                        </Label>
-                                                        <Text fx:id="valorTotalDaCompraText" strokeType="OUTSIDE" strokeWidth="0.0" text="R$ 1220,00">
-                                                            <font>
-                                                                <Font size="18.0" />
-                                                            </font>
-                                                        </Text>
-                                                    </children>
-                                                </HBox>
-                                                <HBox spacing="16.0">
-                                                    <children>
-                                                        <HBox alignment="CENTER_LEFT" fillHeight="false" spacing="4.0">
-                                                            <children>
-                                                                <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                                                    <image>
-                                                                        <Image url="@image/clock.png" />
-                                                                    </image>
-                                                                </ImageView>
-                                                                <Text fx:id="horarioDoFilmeText" fill="#555555" strokeType="OUTSIDE" strokeWidth="0.0" text="12:00">
-                                                                    <font>
-                                                                        <Font size="16.0" />
-                                                                    </font>
-                                                                </Text>
-                                                            </children>
-                                                        </HBox>
-                                                        <HBox alignment="CENTER_LEFT" fillHeight="false" layoutX="10.0" layoutY="10.0" spacing="4.0">
-                                                            <children>
-                                                                <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                                                    <image>
-                                                                        <Image url="@image/date.png" />
-                                                                    </image>
-                                                                </ImageView>
-                                                                <Text fx:id="dataDoFilmeText" fill="#555555" strokeType="OUTSIDE" strokeWidth="0.0" text="24/10/2023">
-                                                                    <font>
-                                                                        <Font size="16.0" />
-                                                                    </font>
-                                                                </Text>
-                                                            </children>
-                                                        </HBox>
-                                                    </children>
-                                                </HBox>
-                                            </children>
-                                        </VBox>
-                                        <VBox fillWidth="false" spacing="8.0">
-                                            <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ingressos">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Text>
-                                                <HBox fillHeight="false" spacing="12.0">
-                                                    <children>
-                                                        <AnchorPane style="-fx-background-color: #FFFFFF; -fx-border-radius: 999; -fx-background-radius: 999; -fx-border-color: #003789;">
-                                                            <children>
-                                                                <Text fx:id="quantidadeMeiaText" fill="#054fbe" strokeType="OUTSIDE" strokeWidth="0.0" text="3 x Meia" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
-                                                                </Text>
-                                                            </children>
-                                                            <HBox.margin>
-                                                                <Insets />
-                                                            </HBox.margin>
-                                                            <padding>
-                                                                <Insets bottom="2.0" left="6.0" right="6.0" top="2.0" />
-                                                            </padding>
-                                                        </AnchorPane>
-                                                        <AnchorPane layoutX="10.0" layoutY="10.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 999; -fx-background-radius: 999; -fx-border-color: #003789;">
-                                                            <children>
-                                                                <Text fx:id="quantidadeInteiraText" fill="#054fbe" strokeType="OUTSIDE" strokeWidth="0.0" text="3 x Inteira" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
-                                                                </Text>
-                                                            </children>
-                                                            <padding>
-                                                                <Insets bottom="2.0" left="6.0" right="6.0" top="2.0" />
-                                                            </padding>
-                                                        </AnchorPane>
-                                                        <AnchorPane layoutX="216.0" layoutY="10.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 999; -fx-background-radius: 999; -fx-border-color: #003789;">
-                                                            <children>
-                                                                <Text fx:id="quantidadeVipText" fill="#054fbe" strokeType="OUTSIDE" strokeWidth="0.0" text="3 x VIP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                    <font>
-                                                                        <Font size="14.0" />
-                                                                    </font>
-                                                                </Text>
-                                                            </children>
-                                                            <padding>
-                                                                <Insets bottom="2.0" left="6.0" right="6.0" top="2.0" />
-                                                            </padding>
-                                                        </AnchorPane>
-                                                    </children>
-                                                </HBox>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </VBox>
-                            </children>
-                        </HBox>
-                    </children>
+                <VBox fx:id="itemsContainerVbox">
                 </VBox>
             </content>
         </ScrollPane>
-        <Button layoutX="534.0" layoutY="661.0" mnemonicParsing="false" text="Voltar ao início" fx:id="botaoVoltar" />
+        <Button layoutX="534.0" layoutY="661.0" mnemonicParsing="false" text="Voltar ao início" fx:id="botaoVoltar"/>
     </children>
 </AnchorPane>

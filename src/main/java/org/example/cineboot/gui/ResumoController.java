@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -61,6 +62,7 @@ public class ResumoController {
         concluir.setOnAction(
                 event -> {
                     auth.refresh();
+
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/home.fxml"));
                         Parent root = loader.load();
@@ -74,7 +76,11 @@ public class ResumoController {
                         stage.show();
 
                     } catch (IOException e) {
-                        System.out.println("Erro ao carregar a tela inicial: " + e.getMessage());
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erro");
+                        alert.setHeaderText("Ocorreu um erro interno.");
+                        alert.setContentText("Erro ao carregar a tela inicial.");
+                        alert.showAndWait();
                     }
                 });
 

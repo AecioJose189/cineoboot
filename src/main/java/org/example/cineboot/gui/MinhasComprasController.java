@@ -5,91 +5,61 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.cineboot.dados.DB;
+import org.example.cineboot.negocio.Auth;
 import org.example.cineboot.negocio.Compra;
 import org.example.cineboot.negocio.Filme;
 import org.example.cineboot.negocio.Sessao;
 
 import java.io.IOException;
-import java.net.URL;
-import java.text.NumberFormat;
-import java.util.Locale;
+import java.util.ArrayList;
 
 public class MinhasComprasController {
     @FXML
-    private ScrollPane scrollPane;
-
-    @FXML
-    private ImageView imagemFilme;
-
-    @FXML
-    private Label nomeDoFilmeLabel;
-
-    @FXML
-    private Text valorTotalDaCompraText;
-
-    @FXML
-    private Text horarioDoFilmeText;
-
-    @FXML
-    private Text dataDoFilmeText;
-
-    @FXML
-    private Text quantidadeMeiaText;
-
-    @FXML
-    private Text quantidadeInteiraText;
-
-    @FXML
-    private Text quantidadeVipText;
+    private VBox itemsContainerVbox;
 
     @FXML
     private Button botaoVoltar;
 
-    private final Locale localBrasil = new Locale("pt", "BR");
-    private Compra compra;
+    private ArrayList<Compra> compras;
     private DB db;
-    private Filme filme;
-    private Sessao sessao;
+    private Auth auth;
 
     @FXML
     private void initialize() {
         db = DB.getInstance();
+        auth = Auth.getInstance();
+
+        String usuarioId = auth.getUsuario().getId();
+        compras = db.getCompras(usuarioId);
     }
 
     private void rodarMinhasCompras() {
-        filme = db.getFilme(compra.getFilmeId());
-        sessao = db.getSessao(compra.getSessaoId());
+        for (Compra compra : compras) {
+            try {
+                Filme filme = db.getFilme(compra.getFilmeId());
+                Sessao sessao = db.getSessao(compra.getSessaoId());
 
-        nomeDoFilmeLabel.setText(filme.getTitulo());
-        valorTotalDaCompraText.setText(NumberFormat.getCurrencyInstance(localBrasil).format(compra.getQuantidadeInteira() * 24 + compra.getQuantidadeVip() * 12 + compra.getQuantidadeMeia() * 12));
-        horarioDoFilmeText.setText(sessao.getHorario());
-        dataDoFilmeText.setText(sessao.getData());
-        quantidadeMeiaText.setText(compra.getQuantidadeMeia() + " x Meia");
-        quantidadeInteiraText.setText(compra.getQuantidadeInteira() + " x Inteira");
-        quantidadeVipText.setText(compra.getQuantidadeVip() + " x VIP");
-        exibirImagem();
-    }
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/item-historico.fxml"));
+                itemsContainerVbox.getChildren().add(loader.load());
 
-    private void exibirImagem() {
-        URL imageUrl = getClass().getResource(filme.getImagem());
-        if (imageUrl != null) {
-            imagemFilme.setImage(new Image(imageUrl.toString()));
-        } else {
-            System.out.println("Imagem não encontrada: " + filme.getImagem());
+                ItemHistoricoController controller = loader.getController();
+                controller.setupComponent(filme, sessao, compra);
+
+            } catch (IOException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Ocorreu um erro interno.");
+                alert.setContentText("Erro ao carregar os dados das compras.");
+            }
         }
     }
 
-
-    public void setupMinhasCompras(Compra compra) {
-        this.compra = compra;
+    public void setupMinhasCompras() {
         botaoVoltar.setOnAction(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cineboot/home.fxml"));
@@ -104,7 +74,11 @@ public class MinhasComprasController {
                 stage.show();
 
             } catch (IOException e) {
-                System.out.println("Erro ao carregar a tela inicial: " + e.getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Ocorreu um erro interno.");
+                alert.setContentText("Erro ao carregar a tela inicial.");
+                alert.showAndWait();
             }
         });
         rodarMinhasCompras();

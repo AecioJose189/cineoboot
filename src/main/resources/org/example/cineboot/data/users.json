@@ -1,127 +1,32 @@
 [
     {
-        "senha": "sWsn@$2Q",
-        "compras": [
-            {
-                "filmeId": 1,
-                "quantidadeInteira": 1,
-                "sessaoId": 1,
-                "quantidadeVip": 1,
-                "id": 1,
-                "quantidadeMeia": 1
-            },
-            {
-                "quantidadeInteira": 2,
-                "sessaoId": 3,
-                "quantidadeVip": 3,
-                "id": 1,
-                "quantidadeMeia": 1
-            },
-            {
-                "quantidadeInteira": 2,
-                "sessaoId": 8,
-                "quantidadeVip": 3,
-                "id": 1,
-                "quantidadeMeia": 1
-            },
-            {
-                "quantidadeInteira": 2,
-                "sessaoId": 11,
-                "quantidadeVip": 3,
-                "id": 1,
-                "quantidadeMeia": 1
-            },
-            {
-                "filmeId": 2,
-                "quantidadeInteira": 2,
-                "sessaoId": 7,
-                "quantidadeVip": 3,
-                "id": 1,
-                "quantidadeMeia": 1
-            },
-            {
-                "filmeId": 1,
-                "quantidadeInteira": 2,
-                "sessaoId": 2,
-                "quantidadeVip": 2,
-                "id": 1,
-                "quantidadeMeia": 1
-            },
-            {
-                "filmeId": 1,
-                "quantidadeInteira": 3,
-                "sessaoId": 2,
-                "quantidadeVip": 1,
-                "id": 1,
-                "quantidadeMeia": 2
-            }
-        ],
-        "quantidadeIngressos": 70,
-        "nome": "Aécio",
-        "id": 1,
-        "login": "joaoira"
-    },
-    {
         "senha": "123",
-        "compras": [
-            {
-                "filmeId": 2,
-                "quantidadeInteira": 2,
-                "sessaoId": 7,
-                "quantidadeVip": 3,
-                "id": 1,
-                "quantidadeMeia": 1
-            },
-            {
-                "filmeId": 1,
-                "quantidadeInteira": 2,
-                "sessaoId": 2,
-                "quantidadeVip": 2,
-                "id": 1,
-                "quantidadeMeia": 1
-            },
-            {
-                "filmeId": 1,
-                "quantidadeInteira": 3,
-                "sessaoId": 2,
-                "quantidadeVip": 1,
-                "id": 1,
-                "quantidadeMeia": 2
-            }
-        ],
-        "quantidadeIngressos": 35,
-        "nome": "123",
-        "id": 1,
-        "login": "123"
+        "tipo": "ADMINISTRADOR",
+        "compras": [],
+        "quantidadeIngressos": 0,
+        "nome": "Conta de ADM",
+        "id": "6d2d4a51-f339-4777-96bc-0587f6c898f3",
+        "isVip": true,
+        "username": "123"
     },
     {
-        "senha": "gian11",
-        "compras": [{
-            "filmeId": 2,
-            "quantidadeInteira": 2,
-            "sessaoId": 2,
-            "quantidadeVip": 2,
-            "id": 2,
-            "quantidadeMeia": 2
-        }],
-        "quantidadeIngressos": 4,
-        "nome": "Gian",
-        "id": 2,
-        "login": "gdass8000"
+        "senha": "456",
+        "tipo": "CLIENTE",
+        "compras": [],
+        "quantidadeIngressos": 0,
+        "nome": "Conta de Cliente VIP",
+        "id": "9ebf8520-1490-40c5-b98c-2943a0d46e0b",
+        "isVip": true,
+        "username": "456"
     },
     {
-        "senha": "wwe21",
-        "compras": [{
-            "filmeId": 3,
-            "quantidadeInteira": 3,
-            "sessaoId": 3,
-            "quantidadeVip": 3,
-            "id": 3,
-            "quantidadeMeia": 3
-        }],
-        "quantidadeIngressos": 2,
-        "nome": "Aécio02",
-        "id": 3,
-        "login": "testeteste"
+        "senha": "789",
+        "tipo": "CLIENTE",
+        "compras": [],
+        "quantidadeIngressos": 0,
+        "nome": "Conta de Cliente",
+        "id": "dabe6b81-d917-431e-885c-cc7d5b2b4f77",
+        "isVip": false,
+        "username": "789"
     }
 ]

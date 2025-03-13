@@ -1,8 +1,7 @@
 package org.example.cineboot.negocio;
 
-import org.example.cineboot.Usuario;
 import org.example.cineboot.dados.DB;
-import org.example.cineboot.exceptions.InvalidLoginException;
+import org.example.cineboot.exceptions.InvalidCredentialsException;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,16 +18,16 @@ public class Auth {
         return instance;
     }
 
-    public void login(String login, String senha)  throws InvalidLoginException, IOException {
+    public void login(String login, String senha) throws InvalidCredentialsException, IOException {
         List<Usuario> usuarios = db.carregarUsuarios();
         for (Usuario usuario : usuarios) {
-            if (usuario.getLogin().equals(login) && usuario.getSenha().equals(senha)) {
+            if (usuario.getUsername().equals(login) && usuario.getSenha().equals(senha)) {
                 this.usuario = usuario;
                 return;
             }
         }
 
-        throw new InvalidLoginException("Login ou senha incorretos!");
+        throw new InvalidCredentialsException("Login ou senha incorretos!");
     }
 
     public Usuario getUsuario() {
@@ -36,11 +35,15 @@ public class Auth {
     }
 
     public void refresh() {
-        List<Usuario> usuarios = db.carregarUsuarios();
-        for (Usuario usuario : usuarios) {
-            if (usuario.getLogin().equals(this.usuario.getLogin())) {
-                this.usuario = usuario;
+        try {
+            List<Usuario> usuarios = db.carregarUsuarios();
+            for (Usuario usuario : usuarios) {
+                if (usuario.getUsername().equals(this.usuario.getUsername())) {
+                    this.usuario = usuario;
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

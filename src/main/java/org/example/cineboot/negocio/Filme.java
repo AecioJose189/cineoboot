@@ -9,10 +9,10 @@ public class Filme {
     private String classificacao;
     private String imagem;
     private ArrayList<Sessao> sessoes;
-    private Long id;
+    private String id;
 
 
-    public Filme(Long id, String titulo, String descricao, String imagem, String duracao, String classificacao, ArrayList<Sessao> sessoes ) {
+    public Filme(String id, String titulo, String descricao, String imagem, String duracao, String classificacao, ArrayList<Sessao> sessoes ) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.imagem = imagem;
@@ -66,11 +66,11 @@ public class Filme {
         return classificacao;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

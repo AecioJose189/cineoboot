@@ -9,7 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import org.example.cineboot.exceptions.InvalidLoginException;
+import org.example.cineboot.exceptions.InvalidCredentialsException;
 import org.example.cineboot.negocio.Auth;
 
 import java.io.IOException;
@@ -18,6 +18,8 @@ public class LoginController {
     @FXML private TextField loginField;
     @FXML private PasswordField senhaField;
     @FXML private Button loginButton;
+    @FXML
+    private Button cadastrarButton;
 
     private Auth auth = Auth.getInstance();
 
@@ -30,11 +32,16 @@ public class LoginController {
                 e.printStackTrace();
             }
         });
+
     }
 
     private void tryLogin() throws IOException {
         String login = loginField.getText();
         String senha = senhaField.getText();
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erro");
+        alert.setHeaderText("Ocorreu um erro ao fazer login");
 
         try {
             auth.login(login, senha);
@@ -46,15 +53,12 @@ public class LoginController {
             stage.setScene(new Scene(root));
             stage.show();
             loginField.getScene().getWindow().hide();
-        } catch (InvalidLoginException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro");
-            alert.setHeaderText("Ocorreu um erro ao fazer login");
+        } catch (InvalidCredentialsException e) {
             alert.setContentText(e.getMessage());
-
+            alert.showAndWait();
+        } catch (IOException e) {
+            alert.setContentText("Ocorreu um erro no carregamento dos usuários!");
             alert.showAndWait();
         }
-
-
     }
 }

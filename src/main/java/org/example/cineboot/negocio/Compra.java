@@ -1,14 +1,14 @@
 package org.example.cineboot.negocio;
 
 public class Compra {
-    private Integer filmeId;
-    private Integer sessaoId;
+    private String filmeId;
+    private String sessaoId;
     private Integer quantidadeInteira;
     private Integer quantidadeVip;
     private Integer quantidadeMeia;
-    private Long id;
+    private String id;
 
-    public Compra(Integer filmeId, Integer sessaoId, Integer quantidadeInteira, Integer quantidadeVip, Integer quantidadeMeia, Long id) {
+    public Compra(String filmeId, String sessaoId, Integer quantidadeInteira, Integer quantidadeVip, Integer quantidadeMeia, String id) {
         this.filmeId = filmeId;
         this.sessaoId = sessaoId;
         this.quantidadeInteira = quantidadeInteira;
@@ -17,19 +17,19 @@ public class Compra {
         this.id = id;
     }
 
-    public Integer getFilmeId() {
+    public String getFilmeId() {
         return filmeId;
     }
 
-    public void setFilmeId(Integer filmeId) {
+    public void setFilmeId(String filmeId) {
         this.filmeId = filmeId;
     }
 
-    public Integer getSessaoId() {
+    public String getSessaoId() {
         return sessaoId;
     }
 
-    public void setSessaoId(Integer sessaoId) {
+    public void setSessaoId(String sessaoId) {
         this.sessaoId = sessaoId;
     }
 
@@ -57,11 +57,11 @@ public class Compra {
         this.quantidadeMeia = quantidadeMeia;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

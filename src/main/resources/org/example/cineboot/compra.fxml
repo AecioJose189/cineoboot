@@ -87,7 +87,7 @@
                </font>
             </Label>
             <Label fx:id="sinopseLabel" alignment="TOP_LEFT" layoutX="39.0" layoutY="126.0" prefHeight="128.0" prefWidth="369.0" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." textOverrun="CLIP" wrapText="true" />
-            <Label layoutX="90.0" layoutY="586.0" text="Ingresso VIP (R$12)">
+            <Label layoutX="90.0" layoutY="586.0" text="Ingresso VIP (R$12)" fx:id="ingressoVipLabel">
                <font>
                   <Font size="18.0" />
                </font>
