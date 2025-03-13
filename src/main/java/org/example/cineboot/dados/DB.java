@@ -4,6 +4,10 @@ import org.example.cineboot.Usuario;
 import org.example.cineboot.negocio.Filme;
 import org.example.cineboot.negocio.Sessao;
 import org.example.cineboot.negocio.Venda;
+import org.example.cineboot.negocio.ingresso.Ingresso;
+import org.example.cineboot.negocio.ingresso.IngressoMeiaEntrada;
+import org.example.cineboot.negocio.ingresso.IngressoNormal;
+import org.example.cineboot.negocio.ingresso.IngressoVip;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -20,30 +24,25 @@ public class DB {
     private final File usersDbFile = new File("src/main/resources/org/example/cineboot/data/users.json");
 
     public void processarVenda(Venda venda) throws Exception {
-        int ingressosComprados = venda.getIngressos().size();
+        int quantidadeMeia = 0;
+        int quantidadeInteira = 0;
+        int quantidadeVip = 0;
+
+        for (Ingresso ingresso : venda.getIngressos()) {
+            if (ingresso instanceof IngressoMeiaEntrada) {
+                quantidadeMeia++;
+            } else if (ingresso instanceof IngressoNormal) {
+                quantidadeInteira++;
+            } else if (ingresso instanceof IngressoVip) {
+                quantidadeVip++;
+            }
+        }
+
+        int ingressosComprados = quantidadeMeia + quantidadeInteira + quantidadeVip;
+
         Sessao sessao = venda.getIngressos().getFirst().getSessao();
         Filme filme = venda.getIngressos().getFirst().getFilme();
         Usuario usuario = venda.getUsuario();
-
-        try {
-            String content = new String(Files.readAllBytes(Paths.get(usersDbFile.getPath())));
-            JSONArray json = new JSONArray(content);
-
-            for (int i = 0; i < json.length(); i++) {
-                JSONObject user = json.getJSONObject(i);
-                if (usuario.getId() == user.getInt("id")) {
-                    int qtdIngressos = user.getInt("quantidadeIngressos");
-                    user.put("quantidadeIngressos", ingressosComprados + qtdIngressos);
-
-                    Files.write(
-                            Paths.get(usersDbFile.getPath()),
-                            json.toString(4).getBytes()
-                    );
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         try {
             String content = new String(Files.readAllBytes(Paths.get(moviesDbFile.getPath())));
@@ -77,8 +76,38 @@ public class DB {
                 );
             }
 
+
         } catch (Exception e) {
             System.out.println("Erro ao processar venda: " + e.getMessage());
+        }
+
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(usersDbFile.getPath())));
+            JSONArray json = new JSONArray(content);
+
+            for (int i = 0; i < json.length(); i++) {
+                JSONObject user = json.getJSONObject(i);
+                if (usuario.getId() == user.getInt("id")) {
+                    int qtdIngressos = user.getInt("quantidadeIngressos");
+                    user.put("quantidadeIngressos", ingressosComprados + qtdIngressos);
+                    JSONArray compras = user.getJSONArray("compras");
+                    JSONObject novaCompra = new JSONObject();
+                    novaCompra.put("id", 1);
+                    novaCompra.put("filmeId", filme.getId());
+                    novaCompra.put("sessaoId", sessao.getId());
+                    novaCompra.put("quantidadeMeia", quantidadeMeia);
+                    novaCompra.put("quantidadeInteira", quantidadeInteira);
+                    novaCompra.put("quantidadeVip", quantidadeVip);
+                    System.out.println(novaCompra);
+                    compras.put(novaCompra);
+                    Files.write(
+                            Paths.get(usersDbFile.getPath()),
+                            json.toString(4).getBytes()
+                    );
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -107,6 +136,7 @@ public class DB {
                     }
 
                     return new Filme(
+                            jsonObject.getLong("id"),
                             jsonObject.getString("nome"),
                             jsonObject.getString("sinopse"),
                             jsonObject.getString("imagem"),

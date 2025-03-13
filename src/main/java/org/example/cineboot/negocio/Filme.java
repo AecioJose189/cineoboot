@@ -12,14 +12,14 @@ public class Filme {
     private Long id;
 
 
-    public Filme(String titulo, String descricao, String imagem, String duracao, String classificacao, ArrayList<Sessao> sessoes ) {
+    public Filme(Long id, String titulo, String descricao, String imagem, String duracao, String classificacao, ArrayList<Sessao> sessoes ) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.imagem = imagem;
         this.duracao = duracao;
         this.classificacao = classificacao;
         this.sessoes = sessoes;
-        
+        this.id = id;
     }
 
     public ArrayList<Sessao> getSessoes() {
@@ -64,6 +64,14 @@ public class Filme {
 
     public String getClassificacao() {
         return classificacao;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setClassificacao(String classificacao) {

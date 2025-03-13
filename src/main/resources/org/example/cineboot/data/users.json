@@ -1,20 +1,102 @@
 [
     {
-        "senha": "senha01",
-        "quantidadeIngressos": 13,
+        "senha": "sWsn@$2Q",
+        "compras": [
+            {
+                "filmeId": 1,
+                "quantidadeInteira": 1,
+                "sessaoId": 1,
+                "quantidadeVip": 1,
+                "id": 1,
+                "quantidadeMeia": 1
+            },
+            {
+                "quantidadeInteira": 2,
+                "sessaoId": 3,
+                "quantidadeVip": 3,
+                "id": 1,
+                "quantidadeMeia": 1
+            },
+            {
+                "quantidadeInteira": 2,
+                "sessaoId": 8,
+                "quantidadeVip": 3,
+                "id": 1,
+                "quantidadeMeia": 1
+            },
+            {
+                "quantidadeInteira": 2,
+                "sessaoId": 11,
+                "quantidadeVip": 3,
+                "id": 1,
+                "quantidadeMeia": 1
+            },
+            {
+                "filmeId": 2,
+                "quantidadeInteira": 2,
+                "sessaoId": 7,
+                "quantidadeVip": 3,
+                "id": 1,
+                "quantidadeMeia": 1
+            }
+        ],
+        "quantidadeIngressos": 59,
+        "nome": "Aécio",
         "id": 1,
-        "login": "usuario01"
+        "login": "joaoira"
     },
     {
-        "senha": "senha02",
+        "senha": "123",
+        "compras": [
+            {
+                "quantidadeInteira": 2,
+                "sessaoId": 11,
+                "quantidadeVip": 3,
+                "id": 1,
+                "quantidadeMeia": 1
+            },
+            {
+                "filmeId": 2,
+                "quantidadeInteira": 2,
+                "sessaoId": 7,
+                "quantidadeVip": 3,
+                "id": 1,
+                "quantidadeMeia": 1
+            }
+        ],
+        "quantidadeIngressos": 24,
+        "nome": "123",
+        "id": 1,
+        "login": "123"
+    },
+    {
+        "senha": "gian11",
+        "compras": [{
+            "filmeId": 2,
+            "quantidadeInteira": 2,
+            "sessaoId": 2,
+            "quantidadeVip": 2,
+            "id": 2,
+            "quantidadeMeia": 2
+        }],
         "quantidadeIngressos": 4,
+        "nome": "Gian",
         "id": 2,
-        "login": "usuario02"
+        "login": "gdass8000"
     },
     {
-        "senha": "senha03",
+        "senha": "wwe21",
+        "compras": [{
+            "filmeId": 3,
+            "quantidadeInteira": 3,
+            "sessaoId": 3,
+            "quantidadeVip": 3,
+            "id": 3,
+            "quantidadeMeia": 3
+        }],
         "quantidadeIngressos": 2,
+        "nome": "Aécio02",
         "id": 3,
-        "login": "usuario03"
+        "login": "testeteste"
     }
 ]

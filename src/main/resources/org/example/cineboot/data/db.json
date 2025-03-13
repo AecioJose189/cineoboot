@@ -1,7 +1,7 @@
 [
     {
         "sinopse": "No exuberante mundo alienígena de Pandora vivem os Na'vi, seres que parecem ser primitivos, mas são altamente evoluídos. Jake Sully, um ex-fuzileiro naval paralítico, volta a andar através de um avatar e se apaixona por uma Na'vi. Esta paixão leva Jake a lutar pela sobrevivência de Pandora.",
-        "imagem": "resources/org/example/cineboot/image/avatar.jpg",
+        "imagem": "/org/example/cineboot/image/avatar.jpg",
         "nome": "Avatar",
         "classificacao": "12 anos",
         "id": 1,
@@ -19,14 +19,14 @@
                 "horario": "20:00",
                 "ingressosTotais": 50,
                 "id": 2,
-                "ingressosComprados": 18
+                "ingressosComprados": 20
             },
             {
                 "data": "11/03/2025",
                 "horario": "14:00",
                 "ingressosTotais": 50,
                 "id": 3,
-                "ingressosComprados": 20
+                "ingressosComprados": 35
             },
             {
                 "data": "12/03/2025",
@@ -48,7 +48,7 @@
     },
     {
         "sinopse": "Depois de lutar ao lado dos Vingadores, chegou a hora do jovem Peter Parker voltar para casa em Nova York ao lado de sua tia May. Sob o olhar atento do mentor Tony Stark, Peter começa a abraçar sua nova identidade como Homem-Aranha e combate diariamente pequenos crimes nas redondezas. Ele acredita que encontrou a missão de sua vida quando o terrível vilão Abutre surge ameaçando a cidade.",
-        "imagem": "teste.jpg",
+        "imagem": "/org/example/cineboot/image/homemaranha.jpg",
         "nome": "Homem aranha: de volta ao lar",
         "classificacao": "12 anos",
         "id": 2,
@@ -66,14 +66,14 @@
                 "horario": "13:00",
                 "ingressosTotais": 50,
                 "id": 7,
-                "ingressosComprados": 0
+                "ingressosComprados": 8
             },
             {
                 "data": "11/03/2025",
                 "horario": "22:00",
                 "ingressosTotais": 50,
                 "id": 8,
-                "ingressosComprados": 30
+                "ingressosComprados": 39
             },
             {
                 "data": "12/03/2025",
@@ -86,7 +86,7 @@
     },
     {
         "sinopse": "O físico J. Robert Oppenheimer trabalha com uma equipe de cientistas durante o Projeto Manhattan, levando ao desenvolvimento da bomba atômica.É baseado no livro American Prometheus, biografia de J. Robert Oppenheimer escrita por Kai Bird e Martin J. Sherwin.",
-        "imagem": "teste.jpg",
+        "imagem": "/org/example/cineboot/image/oppenheimer.jpg",
         "nome": "Oppenheimer",
         "classificacao": "18 anos",
         "id": 3,
@@ -104,14 +104,14 @@
                 "horario": "23:00",
                 "ingressosTotais": 50,
                 "id": 11,
-                "ingressosComprados": 0
+                "ingressosComprados": 6
             },
             {
                 "data": "11/03/2025",
                 "horario": "21:00",
                 "ingressosTotais": 50,
                 "id": 12,
-                "ingressosComprados": 0
+                "ingressosComprados": 6
             },
             {
                 "data": "12/03/2025",
@@ -131,7 +131,7 @@
     },
     {
         "sinopse": "No início da década de 1970, o Brasil enfrenta o endurecimento da ditadura militar. No Rio de Janeiro, a família Paiva - Rubens, Eunice e seus cinco filhos - vive à beira da praia em uma casa de portas abertas para os amigos. Um dia, Rubens Paiva é levado por militares à paisana e desaparece. Eunice - cuja busca pela verdade sobre o destino de seu marido se estenderia por décadas - é obrigada a se reinventar e traçar um novo futuro para si e seus filhos.",
-        "imagem": "teste.jpg",
+        "imagem": "/org/example/cineboot/image/aindaestouaqui.jpg",
         "nome": "Ainda estou aqui",
         "classificacao": "14 anos",
         "id": 4,

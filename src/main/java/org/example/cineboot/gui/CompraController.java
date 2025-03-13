@@ -18,6 +18,7 @@ import org.example.cineboot.negocio.Filme;
 import org.example.cineboot.dados.DB;
 import org.example.cineboot.negocio.*;
 import org.example.cineboot.negocio.ingresso.IngressoMeiaEntrada;
+import org.example.cineboot.negocio.ingresso.IngressoNormal;
 import org.example.cineboot.negocio.ingresso.IngressoVip;
 
 import java.io.IOException;
@@ -61,11 +62,14 @@ public class CompraController {
     @FXML
     private Button confirmarEscolhaPg2;
 
+    @FXML
+    private ImageView classIndicativaFoto;
 
     private DB db;
     private Auth auth;
     private Filme filme;
     private Sessao sessao;
+
     private Spinner<Integer> meiaSpinner;
     private Label precoMeiaLabel;
     private Spinner<Integer> inteiraSpinner;
@@ -73,18 +77,24 @@ public class CompraController {
     private Spinner<Integer> vipSpinner;
     private Label precoVipLabel;
     private Set<String> horarios;
-    private Locale localBrasil = new Locale("pt", "BR");
+    private Label precoTotalLabel;
+
+    private float precoTotal;
+
+    private final Locale localBrasil = new Locale("pt", "BR");
 
 
-    private static final String PATH_AINDA_ESTOU_AQUI = "/org/example/cineboot/image/aindaestouaqui.jpg";
-    private static final String PATH_AVATAR = "/org/example/cineboot/image/avatar.jpg";
-    private static final String PATH_HOMEM_ARANHA = "/org/example/cineboot/image/homemaranha.jpg";
-    private static final String PATH_OPPENHEIMER = "/org/example/cineboot/image/oppenheimer.jpg";
+    private static final String PATH_claOPPENHEIMER = "/org/example/cineboot/image/classIndicativa/18 anos.png";
+    private static final String PATH_claHOMEM_ARANHA = "/org/example/cineboot/image/classIndicativa/livre.png";;
+    private static final String PATH_claAVATAR = "/org/example/cineboot/image/classIndicativa/12 anos.png";
+    private static final String PATH_claAINDA_ESTOU_AQUI = "/org/example/cineboot/image/classIndicativa/14 anos.png";
+
 
 
 
     @FXML
     private void initialize() {
+        confirmarEscolhaPg2.setDisable(true);
         botaoVoltar();
         db = DB.getInstance();
         auth = Auth.getInstance();
@@ -119,6 +129,7 @@ public class CompraController {
                             "Quantidade de cadeiras disponíveis: " + ingressosDisponiveis + "/" + sessaoAtual.getIngressosTotais()
                     );
                     sessao = sessaoAtual;
+                    confirmarEscolhaPg2.setDisable(false);
                 } else {
                     selecioneHorarioCbox.getSelectionModel().clearSelection();
                     Platform.runLater(() -> quantidadeDisponivelLabel.setText("Sessão esgotada!"));
@@ -141,7 +152,7 @@ public class CompraController {
                         venda.adicionarIngresso(new IngressoMeiaEntrada(20, filme, sessao));
                     }
                     for (int i = 0; i < inteiraSpinner.getValue(); i++) {
-                        venda.adicionarIngresso(new IngressoVip(20, filme, sessao));
+                        venda.adicionarIngresso(new IngressoNormal(20, filme, sessao));
                     }
                     for (int i = 0; i < vipSpinner.getValue(); i++) {
                         venda.adicionarIngresso(new IngressoVip(20, filme, sessao));
@@ -155,7 +166,7 @@ public class CompraController {
 
                         ResumoController tela03Controller = loader.getController();
 
-                        tela03Controller.setDetalhes(filme, sessao, quantidadeMeia, quantidadeInteira, quantidadeVip);
+                        tela03Controller.setDetalhes(filme, sessao, quantidadeMeia, quantidadeInteira, quantidadeVip, precoTotal);
 
                         Stage stageAtual = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stageAtual.close();
@@ -181,21 +192,30 @@ public class CompraController {
 
     private void setupPrecoLabels(){
         precoMeiaLabel = new Label("");
-        precoInteiraLabel = new Label("");
-        precoVipLabel = new Label("");
-
         precoMeiaLabel.setLayoutX(310);
         precoMeiaLabel.setLayoutY(514);
 
+        precoInteiraLabel = new Label("");
         precoInteiraLabel.setLayoutX(310);
         precoInteiraLabel.setLayoutY(548);
 
+        precoVipLabel = new Label("");
         precoVipLabel.setLayoutX(310);
         precoVipLabel.setLayoutY(588);
+
+        precoTotalLabel = new Label("");
+        precoTotalLabel.setLayoutX(310);
+        precoTotalLabel.setLayoutY(628);
 
         root.getChildren().add(precoMeiaLabel);
         root.getChildren().add(precoInteiraLabel);
         root.getChildren().add(precoVipLabel);
+        root.getChildren().add(precoTotalLabel);
+    }
+
+    private void updatePrecoTotal(){
+        precoTotal = meiaSpinner.getValue() * 12 + inteiraSpinner.getValue() * 24 + vipSpinner.getValue() * 12;
+        precoTotalLabel.setText(NumberFormat.getCurrencyInstance(localBrasil).format(precoTotal));
     }
 
     private void setupSpinners() {
@@ -206,6 +226,7 @@ public class CompraController {
         meiaSpinner.setPrefWidth(62);
         meiaSpinner.valueProperty().addListener(
             (observable, oldValue, newValue) -> {
+                updatePrecoTotal();
                 if (newValue >0) {
                     precoMeiaLabel.setText(NumberFormat.getCurrencyInstance(localBrasil).format(newValue * 12));
                 } else {
@@ -221,6 +242,7 @@ public class CompraController {
         inteiraSpinner.setPrefWidth(62);
         inteiraSpinner.valueProperty().addListener(
                 (observable, oldValue, newValue) -> {
+                    updatePrecoTotal();
                     if (newValue >0) {
                         precoInteiraLabel.setText(NumberFormat.getCurrencyInstance(localBrasil).format(newValue * 24));
                     } else {
@@ -236,6 +258,7 @@ public class CompraController {
         vipSpinner.setPrefWidth(62);
         vipSpinner.valueProperty().addListener(
                 (observable, oldValue, newValue) -> {
+                    updatePrecoTotal();
                     if (newValue >0) {
                         precoVipLabel.setText(NumberFormat.getCurrencyInstance(localBrasil).format(newValue * 12));
                     } else {
@@ -260,34 +283,35 @@ public class CompraController {
         Set<String> datas = new HashSet<>();
 
         duracaoLabel.setText("Duração: " + filme.getDuracao());
-        classificacaoLabel.setText("Classificação: " + filme.getClassificacao());
 
-        String imagePath;
+        String imagePathClass;
 
         switch (id) {
             case 1:
-                imagePath = PATH_AVATAR;
+                imagePathClass = PATH_claAVATAR;
                 break;
             case 2:
-                imagePath = PATH_HOMEM_ARANHA;
+                imagePathClass = PATH_claHOMEM_ARANHA;
                 break;
             case 3:
-                imagePath = PATH_OPPENHEIMER;
+                imagePathClass = PATH_claOPPENHEIMER;
                 break;
             case 4:
-                imagePath = PATH_AINDA_ESTOU_AQUI;
+                imagePathClass = PATH_claAINDA_ESTOU_AQUI;
                 break;
             default:
                 System.out.println("Nenhuma imagem encontrada para o ID: " + id);
                 return;
         }
 
-        URL imageUrl = getClass().getResource(imagePath);
+        URL imageUrl = getClass().getResource(filme.getImagem());
+        URL imageUrlClass = getClass().getResource(imagePathClass);
 
-        if (imageUrl != null) {
+        if (imageUrl !=null && imageUrlClass != null ) {
             imagemPag2.setImage(new Image(imageUrl.toString()));
+            classIndicativaFoto.setImage(new Image(imageUrlClass.toString()));
         } else {
-            System.out.println("Imagem não encontrada: " + imagePath);
+            System.out.println("Imagem não encontrada: " + filme.getImagem());
         }
 
 

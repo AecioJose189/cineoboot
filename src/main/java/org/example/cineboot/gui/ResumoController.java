@@ -16,6 +16,7 @@ import java.io.IOException;
 
 public class ResumoController {
     private int quantidadeTotal;
+    private float precoTotal;
 
     @FXML
     private Button concluir;
@@ -26,7 +27,6 @@ public class ResumoController {
 
     @FXML
     private Label nomeDoFilmePg3;
-
 
     @FXML
     private Label dataLabelPg3;
@@ -39,6 +39,9 @@ public class ResumoController {
 
     private Auth auth;
 
+    @FXML
+    private Label precoTotalLabel;
+
 
     @FXML
     private void initialize() {
@@ -46,10 +49,11 @@ public class ResumoController {
         buttonFinal();
     }
 
-    public void setDetalhes(Filme filme, Sessao sessao, int quantidadeMeia, int quantidadeInteira, int quantidadeVip) {
+    public void setDetalhes(Filme filme, Sessao sessao, int quantidadeMeia, int quantidadeInteira, int quantidadeVip, float precoTotal) {
         this.filme = filme;
         this.sessao = sessao;
         this.quantidadeTotal = quantidadeMeia + quantidadeInteira + quantidadeVip;
+        this.precoTotal = precoTotal;
         exibirDetalhes();
     }
 
@@ -87,6 +91,7 @@ public class ResumoController {
             ingressosQuantidadePg3.setText("Quantidade total de ingressos: " + this.quantidadeTotal);
             horarioLabelPg3.setText("Horario da sessão: " + sessao.getHorario());
             dataLabelPg3.setText("Data da sessão: " + sessao.getData());
+            precoTotalLabel.setText("Preço total: "+precoTotal);
         }
     }
 }
